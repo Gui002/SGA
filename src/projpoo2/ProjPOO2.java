@@ -22,6 +22,7 @@ public class ProjPOO2 {
     public static void main(String[] args) {
         new TelaPrincipal(); 
         //Mudei este comentario
+        //Alteracoes funcionando
     }
     
 }
