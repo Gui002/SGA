@@ -8,6 +8,7 @@ package model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import model.Conexao;
 import static model.dao.BancoDeDados.*;
 import model.vo.Unidade;
@@ -16,12 +17,13 @@ import model.vo.Unidade;
  *
  * @author Fabricio
  */
-public class UnidadeDAO {
+public class UnidadeDAO implements CRUD<Unidade>{
   
     public UnidadeDAO(){
         
     }
     
+    @Override
     public void inserir(Unidade unidade){
         String codigo = unidade.getCodigo();
         String codigo_material = unidade.getCodigoMaterial();
@@ -34,7 +36,7 @@ public class UnidadeDAO {
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
-            preparedStatement.setInt(1, Integer.parseInt(codigo));
+            preparedStatement.setString(1, codigo);
             preparedStatement.setInt(2, Integer.parseInt(codigo_material));
             preparedStatement.setString(3, disponibilidade);
             preparedStatement.setString(4, estado);
@@ -58,7 +60,7 @@ public class UnidadeDAO {
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
-            preparedStatement.setInt(1, Integer.parseInt(codigo_material));
+            preparedStatement.setString(1, codigo_material);
             preparedStatement.setString(2, disponibilidade);
             preparedStatement.setString(3, estado);
             
@@ -68,5 +70,15 @@ public class UnidadeDAO {
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
+    }
+
+    @Override
+    public void remover(Unidade e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Unidade> selecionar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

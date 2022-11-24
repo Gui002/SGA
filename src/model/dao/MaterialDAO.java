@@ -8,6 +8,7 @@ package model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import model.Conexao;
 import static model.dao.BancoDeDados.*;
 import model.vo.Material;
@@ -16,7 +17,7 @@ import model.vo.Material;
  *
  * @author Fabricio
  */
-public class MaterialDAO {
+public class MaterialDAO implements CRUD<Material>{
  
     public MaterialDAO(){
      
@@ -34,7 +35,7 @@ public class MaterialDAO {
           try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
-            preparedStatement.setInt(1, Integer.parseInt(codigo));
+            preparedStatement.setString(1, codigo);
             preparedStatement.setInt(2, Integer.parseInt(codigo_categoria));
             preparedStatement.setString(3, marca);
             preparedStatement.setString(4, nome);
@@ -59,7 +60,7 @@ public class MaterialDAO {
           try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
-            preparedStatement.setInt(1, Integer.parseInt(codigo_categoria));
+            preparedStatement.setString(1, codigo_categoria);
             preparedStatement.setString(2, marca);
             preparedStatement.setString(3, nome);
             preparedStatement.setFloat(4, taxa_diaria);
@@ -68,5 +69,15 @@ public class MaterialDAO {
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
+    }
+
+    @Override
+    public void remover(Material e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Material> selecionar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

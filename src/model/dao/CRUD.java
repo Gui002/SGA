@@ -5,10 +5,14 @@
  */
 package model.dao;
 
+import java.util.List;
+
 /**
  *
  * @author ADMIN
  */
-public interface CRUD {
-    
+public interface CRUD <E>{
+    void inserir(E e);
+    void remover(E e);
+    List<E> selecionar();
 }
