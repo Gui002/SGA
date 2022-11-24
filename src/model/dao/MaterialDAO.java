@@ -17,9 +17,9 @@ import model.vo.Material;
  * @author Fabricio
  */
 public class MaterialDAO {
-    Connection conexao; 
+ 
     public MaterialDAO(){
-        conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS,USUARIO, "").getConexao();
+     
     }
     
     public void inserir(Material material){
@@ -32,6 +32,7 @@ public class MaterialDAO {
         String query = "insert into material (codigo, codigo_categoria, marca, nome, taxa_diaria)" 
                 +" values (?, ?, ?, ?, ?)";
           try{
+            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
             preparedStatement.setInt(1, Integer.parseInt(codigo));
             preparedStatement.setInt(2, Integer.parseInt(codigo_categoria));
@@ -39,7 +40,8 @@ public class MaterialDAO {
             preparedStatement.setString(4, nome);
             preparedStatement.setFloat(5, taxa_diaria);
             preparedStatement.executeUpdate();
-            
+            System.out.println(conexao);
+            conexao.close();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
@@ -55,13 +57,14 @@ public class MaterialDAO {
         String query = "insert into material (codigo_categoria, marca, nome, taxa_diaria)" 
                 + " values (?, ?, ?, ?)";
           try{
+            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
             preparedStatement.setInt(1, Integer.parseInt(codigo_categoria));
             preparedStatement.setString(2, marca);
             preparedStatement.setString(3, nome);
             preparedStatement.setFloat(4, taxa_diaria);
             preparedStatement.executeUpdate();
-            
+            conexao.close();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }

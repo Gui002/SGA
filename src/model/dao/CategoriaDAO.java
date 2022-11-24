@@ -18,9 +18,9 @@ import model.vo.Categoria;
  * @author Fabricio
  */
 public class CategoriaDAO {
-    Connection conexao;
+ 
     public CategoriaDAO(){
-        conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
+        
     }
 
     public void inserir(Categoria categoria){
@@ -29,10 +29,12 @@ public class CategoriaDAO {
         String query = "insert into categoria(codigo, nome) values (?, ?)"; 
         
         try{
+            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
             PreparedStatement preparedStatement = conexao.prepareStatement(query);
             preparedStatement.setInt(1, Integer.parseInt(codigo));
             preparedStatement.setString(2, nome);
             preparedStatement.executeUpdate();
+            conexao.close();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
@@ -43,9 +45,11 @@ public class CategoriaDAO {
         String query = "insert into categoria( nome) values (?)"; 
         
         try{
+            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();    
             PreparedStatement preparedStatement = conexao.prepareStatement(query);
             preparedStatement.setString(1, nome);
             preparedStatement.executeUpdate();
+            conexao.close();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }

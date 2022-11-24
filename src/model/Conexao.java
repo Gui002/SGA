@@ -13,18 +13,30 @@ import java.util.logging.Logger;
  * @author Fabricio
  */
 public class Conexao {
-    Connection conexao;
+    String host;
+    String nomeDoBD;
+    String usuario;
+    String senha;
+    Connection conexao = null;
     
     public Conexao(String host, String nomeDoBD,String usuario, String senha){
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexao = DriverManager.getConnection("jdbc:mysql://" + host + "/" + nomeDoBD , usuario, senha);
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.host = host;
+        this.nomeDoBD = nomeDoBD;
+        this.usuario = usuario;
+        this.senha = senha;
     }
 
-    public Connection getConexao() {
+    public Connection getConexao() throws SQLException{
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            conexao = DriverManager.getConnection("jdbc:mysql://" + host + "/" + nomeDoBD, usuario, senha);
+        }catch(ClassNotFoundException ce){
+            System.out.println(ce.getMessage());
+        }
+        
+        
+        if(conexao == null){throw new SQLException("a conexao nao foi estabelecida!");}
+        
         return conexao;
     }
  

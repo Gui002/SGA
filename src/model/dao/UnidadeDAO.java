@@ -17,9 +17,9 @@ import model.vo.Unidade;
  * @author Fabricio
  */
 public class UnidadeDAO {
-    private Connection conexao;
+  
     public UnidadeDAO(){
-        conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
+        
     }
     
     public void inserir(Unidade unidade){
@@ -32,6 +32,7 @@ public class UnidadeDAO {
                 + " values (?, ?, ?, ?)";
         
         try{
+            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
             preparedStatement.setInt(1, Integer.parseInt(codigo));
             preparedStatement.setInt(2, Integer.parseInt(codigo_material));
@@ -39,6 +40,8 @@ public class UnidadeDAO {
             preparedStatement.setString(4, estado);
           
             preparedStatement.executeUpdate();
+            
+            conexao.close();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
@@ -53,12 +56,15 @@ public class UnidadeDAO {
                 + " values (?, ?, ?)";
         
         try{
+            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
             preparedStatement.setInt(1, Integer.parseInt(codigo_material));
             preparedStatement.setString(2, disponibilidade);
             preparedStatement.setString(3, estado);
-          
+            
             preparedStatement.executeUpdate();
+            
+            conexao.close();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
