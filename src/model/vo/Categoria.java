@@ -34,4 +34,12 @@ public class Categoria {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    @Override
+    public String toString() {
+        String representacao = "Categoria{";
+        representacao += "codigo: " + codigo + "; "
+        + "nome: " + nome + "}";
+        return representacao;
+    }
 }

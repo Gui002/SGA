@@ -65,5 +65,16 @@ public class Aluguel {
         this.data_devolucao = data_devolucao;
     }
 
-    
+    @Override
+    public String toString() {
+        String representacao = "Aluguel{";
+        representacao += "codigo do cliente" + codigoCliente + "; "
+                + "codigo do empregado" +codigoEmpregado + "; "
+                + "codigo da unidade" +codigoUnidade + "; "
+                + "data de aluguel" + data_aluguel + "; "
+                + "data de devolucao" + data_devolucao + "}";
+        
+        return representacao;
+    }
+  
 }

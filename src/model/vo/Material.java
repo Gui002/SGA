@@ -70,6 +70,15 @@ public class Material {
     public void setTaxaDiaria(float taxaDiaria) {
         this.taxaDiaria = taxaDiaria;
     }
-    
+
+    @Override
+    public String toString() {
+        String representacao = "Material{";
+        representacao += "codigo: " + codigo + "; "
+                + "nome: " + nome + "; "
+                + "marca: " + marca + "; "
+                + "codigo da categoria" + codigoCategoria + "}";
+        return representacao;
+    }
     
 }

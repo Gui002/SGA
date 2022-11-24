@@ -53,6 +53,15 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-     
+
+    @Override
+    public String toString() {
+        String representacao = "Cliente{";
+        representacao += "codigo: " + codigo + "; "
+                + "nome: " + nome +";"
+                + "telefone: " + telefone + "; "
+                + "endereco: " + endereco + "}";
+        return representacao;
+    }
      
 }

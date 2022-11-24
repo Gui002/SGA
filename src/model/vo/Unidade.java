@@ -55,6 +55,16 @@ public class Unidade {
     public void setEstadoConservacao(EstadoDeConservacao estadoConservacao) {
         this.estadoConservacao = estadoConservacao;
     }
-    
+
+    @Override
+    public String toString() {
+        String representacao = "Unidade{";
+        representacao += "codigo: " + codigo + "; "
+                + "disponibilidade: " + disponibilidade.toString() + "; "
+                + "estado de conservacao: " + estadoConservacao.toString() + "; "
+                + "codigo do material: " + codigoMaterial + "}";
+        
+        return representacao;
+    }
     
 }

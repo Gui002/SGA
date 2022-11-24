@@ -15,7 +15,7 @@ public class Empregado {
    private String nome;
    private String senha;    
    private Sexo sexo;
-   private String Telefone;
+   private String telefone;
    private TipoDeEmpregado tipo;
 
     public Empregado(String codigo, String endereco, String nome, String senha, Sexo sexo, String Telefone, TipoDeEmpregado tipo) {
@@ -24,7 +24,7 @@ public class Empregado {
         this.nome = nome;
         this.senha = senha;
         this.sexo = sexo;
-        this.Telefone = Telefone;
+        this.telefone = Telefone;
         this.tipo = tipo;
     }
 
@@ -69,11 +69,11 @@ public class Empregado {
     }
 
     public String getTelefone() {
-        return Telefone;
+        return telefone;
     }
 
     public void setTelefone(String Telefone) {
-        this.Telefone = Telefone;
+        this.telefone = Telefone;
     }
 
     public TipoDeEmpregado getTipo() {
@@ -83,6 +83,16 @@ public class Empregado {
     public void setTipo(TipoDeEmpregado tipo) {
         this.tipo = tipo;
     }
-   
-   
+
+    @Override
+    public String toString() {
+        String representacao = "Empregado{";
+        representacao += "codigo: " + codigo +"; "
+                + "nome: " + nome +"; "
+                + "senha: " + senha + "; "
+                + "telefone: "  + telefone + "; "
+                + "endereco: " + endereco + "}";
+        
+        return representacao;
+    }
 }
