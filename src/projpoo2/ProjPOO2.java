@@ -23,6 +23,7 @@ public class ProjPOO2 {
         new TelaPrincipal(); 
         //Mudei este comentario
         //Alteracoes funcionando
+        //Alteracoes no DAO CRUD, unidade, material, categoria, 
     }
     
 }
