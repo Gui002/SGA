@@ -23,22 +23,22 @@ public class AluguelController {
         aluguelDAO = new AluguelDAO();
     }
     
-    public void novoAluguel(String codigoCliente, String codigoEmpregado, int codigoUnidade){
+    public boolean novoAluguel(String codigoCliente, String codigoEmpregado, int codigoUnidade){
         Aluguel aluguel = new Aluguel(
                 codigoCliente,
                 codigoUnidade, 
                 codigoEmpregado,
                 (Date) java.util.Date.from(Instant.now()),
                 null);
-        aluguelDAO.inserir(aluguel);
+        return aluguelDAO.inserir(aluguel);
     }
     
-    public void adicionarDevolucao(int codigoAluguel, Date data_devolucao, EstadoDeConservacao estadoDeConservacao){
-        aluguelDAO.atualizarAluguel(codigoAluguel, data_devolucao, estadoDeConservacao);
+    public boolean adicionarDevolucao(int codigoAluguel, Date data_devolucao, EstadoDeConservacao estadoDeConservacao){
+        return aluguelDAO.atualizarAluguel(codigoAluguel, data_devolucao, estadoDeConservacao);
     }
     
-    public void removerAluguel(String codigoCliente, String codigoEmpregado, int codigoUnidade){
+    public boolean removerAluguel(String codigoCliente, String codigoEmpregado, int codigoUnidade){
         Aluguel aluguel = new Aluguel(codigoCliente, codigoUnidade, codigoEmpregado, null, null);
-        aluguelDAO.remover(aluguel);
+        return aluguelDAO.remover(aluguel);
     }
 }
