@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package projpoo2;
+import controller.Enumeracoes;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.*;
@@ -24,8 +25,9 @@ public class ProjPOO2 {
         //Mudei este comentario
         //Alteracoes funcionando
         //Alteracoes no DAO CRUD, unidade, material, categoria, 
-        model.dao.MaterialDAO md = new model.dao.MaterialDAO();
-        System.out.println((java.util.ArrayList) md.selecionar());
+        model.dao.UnidadeDAO ud = new model.dao.UnidadeDAO();
+        ud.remover(new model.vo.Unidade(1, 1, Enumeracoes.Disponibilidade.DISPONIVEL, Enumeracoes.EstadoDeConservacao.CONSERVADO));
+        System.out.println((java.util.ArrayList) ud.selecionar());
     }
     
 }

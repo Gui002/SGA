@@ -36,7 +36,7 @@ public class UnidadeDAO implements CRUD<Unidade>{
         String disponibilidade = unidade.getDisponibilidade().toString();
         String estado = unidade.getEstadoConservacao().toString();
         
-        String query = "insert into Unidade values(codigo, codigo_material, disponibilidade, estado_conservacao)"
+        String query = "insert into Unidade (codigo, codigo_material, disponibilidade, estado_conservacao)"
                 + " values (null, ?, ?, ?)";
         
         try{
