@@ -32,7 +32,7 @@ public class UnidadeDAO implements CRUD<Unidade>{
     
     @Override
     public void inserir(Unidade unidade){
-        String codigo_material = unidade.getCodigoMaterial();
+        int codigo_material = unidade.getCodigoMaterial();
         String disponibilidade = unidade.getDisponibilidade().toString();
         String estado = unidade.getEstadoConservacao().toString();
         
@@ -42,7 +42,7 @@ public class UnidadeDAO implements CRUD<Unidade>{
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
-            preparedStatement.setInt(1, Integer.parseInt(codigo_material));
+            preparedStatement.setInt(1, codigo_material);
             preparedStatement.setString(2, disponibilidade);
             preparedStatement.setString(3, estado);
           
@@ -55,7 +55,7 @@ public class UnidadeDAO implements CRUD<Unidade>{
     }
     
      public void inserirSemCodigo(Unidade unidade){
-        String codigo_material = unidade.getCodigoMaterial();
+        int codigo_material = unidade.getCodigoMaterial();
         String disponibilidade = unidade.getDisponibilidade().toString();
         String estado = unidade.getEstadoConservacao().toString();
         
@@ -65,7 +65,7 @@ public class UnidadeDAO implements CRUD<Unidade>{
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
-            preparedStatement.setString(1, codigo_material);
+            preparedStatement.setInt(1, codigo_material);
             preparedStatement.setString(2, disponibilidade);
             preparedStatement.setString(3, estado);
             
@@ -84,7 +84,7 @@ public class UnidadeDAO implements CRUD<Unidade>{
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
-            preparedStatement.setString(1, unidade.getCodigo());
+            preparedStatement.setInt(1, unidade.getCodigo());
             
             preparedStatement.executeUpdate();
             
@@ -106,8 +106,8 @@ public class UnidadeDAO implements CRUD<Unidade>{
             ResultSet result = preparedStatement.executeQuery();
             
             while(result.next()){
-                String codigo = result.getString("codigo");
-                String codigo_material = result.getString("codigo_material");
+                int codigo = result.getInt("codigo");
+                int codigo_material = result.getInt("codigo_material");
                 
                 Disponibilidade disponibilidade = (result.getString("disponibilidade").equalsIgnoreCase(Disponibilidade.DISPONIVEL.toString())) ? 
                         Disponibilidade.DISPONIVEL : Disponibilidade.INDISPONIVEL;

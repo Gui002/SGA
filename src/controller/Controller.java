@@ -22,7 +22,7 @@ public class Controller {
     }
 
     public void adicionaMaterial() {
-        String codigo_categoria = Integer.toString(categorias.getSelectedIndex()+1);
+        int codigo_categoria = categorias.getSelectedIndex()+1;
         String Marca = marca.getText();
         String Nome = nome.getText();
         float taxa_diaria = Float.parseFloat(campoTaxa.getText());

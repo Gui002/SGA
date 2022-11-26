@@ -47,7 +47,7 @@ public class CategoriaDAO implements CRUD<Categoria>{
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();    
             PreparedStatement preparedStatement = conexao.prepareStatement(query);
-            preparedStatement.setString(1, categoria.getCodigo());
+            preparedStatement.setInt(1, categoria.getCodigo());
             preparedStatement.execute();
             conexao.close();
         }catch(SQLException se){
@@ -65,7 +65,7 @@ public class CategoriaDAO implements CRUD<Categoria>{
             PreparedStatement preparedStatement = conexao.prepareStatement(query);
             ResultSet result = preparedStatement.executeQuery();
             while(result.next()){
-                String codigo = result.getString("codigo");
+                int codigo = result.getInt("codigo");
                 String nome = result.getString("nome");
                 Categoria categoria = new Categoria(codigo, nome);
                 categorias.add(categoria);

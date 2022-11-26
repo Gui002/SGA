@@ -10,13 +10,13 @@ package model.vo;
  * @author Fabricio
  */
 public class Material {
-    private String codigo;
-    private String codigoCategoria;
+    private int codigo;
+    private int codigoCategoria;
     private String marca;
     private String nome;
     private float taxaDiaria;
 
-    public Material(String codigo, String codigoCategoria, String marca, String nome, float taxaDiaria) {
+    public Material(int codigo, int codigoCategoria, String marca, String nome, float taxaDiaria) {
         this.codigo = codigo;
         this.codigoCategoria = codigoCategoria;
         this.marca = marca;
@@ -24,26 +24,26 @@ public class Material {
         this.taxaDiaria = taxaDiaria;
     }
     
-    public Material(String codigoCategoria, String marca, String nome, float taxaDiaria) {
+    public Material(int codigoCategoria, String marca, String nome, float taxaDiaria) {
         this.codigoCategoria = codigoCategoria;
         this.marca = marca;
         this.nome = nome;
         this.taxaDiaria = taxaDiaria;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
-    public String getCodigoCategoria() {
+    public int getCodigoCategoria() {
         return codigoCategoria;
     }
 
-    public void setCodigoCategoria(String codigoCategoria) {
+    public void setCodigoCategoria(int codigoCategoria) {
         this.codigoCategoria = codigoCategoria;
     }
 

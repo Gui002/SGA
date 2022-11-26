@@ -28,7 +28,7 @@ public class AluguelDAO implements CRUD<Aluguel>{
     public void inserir(Aluguel aluguel) {
         String codigoCliente = aluguel.getCodigoCliente();
         String codigoEmpregado = aluguel.getCodigoEmpregado();
-        String codigoUnidade = aluguel.getCodigoUnidade();
+        int codigoUnidade = aluguel.getCodigoUnidade();
         Date data_inicio = aluguel.getData_aluguel();
         Date data_devolucao = aluguel.getData_devolucao();
         
@@ -41,7 +41,7 @@ public class AluguelDAO implements CRUD<Aluguel>{
            PreparedStatement preparedStatement = conexao.prepareStatement(query);
            
            preparedStatement.setString(1, codigoCliente);
-           preparedStatement.setString(2, codigoUnidade);
+           preparedStatement.setInt(2, codigoUnidade);
            preparedStatement.setString(3, codigoEmpregado);
            preparedStatement.setDate(4, data_inicio);
            preparedStatement.setDate(5, data_devolucao);
@@ -62,7 +62,7 @@ public class AluguelDAO implements CRUD<Aluguel>{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
            PreparedStatement preparedStatement = conexao.prepareStatement(query);
            preparedStatement.setString(1, e.getCodigoCliente());
-           preparedStatement.setString(2, e.getCodigoUnidade());
+           preparedStatement.setInt(2, e.getCodigoUnidade());
            preparedStatement.setString(3, e.getCodigoEmpregado());
            
            preparedStatement.executeUpdate();
@@ -85,7 +85,7 @@ public class AluguelDAO implements CRUD<Aluguel>{
            
            while(result.next()){
                String codigoCliente = result.getString("codigo_cliente");
-               String codigoUnidade = result.getString("codigo_unidade");
+               int codigoUnidade = result.getInt("codigo_unidade");
                String codigoEmpregado = result.getString("codigo_empregado");
                Date data_aluguel = result.getDate("data_inicio");
                Date data_devolucao = result.getDate("data_devolucao");

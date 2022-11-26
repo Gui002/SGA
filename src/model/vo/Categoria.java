@@ -11,19 +11,19 @@ package model.vo;
  * @author Fabricio
  */
 public class Categoria {
-    private String codigo;
+    private int codigo;
     private String nome;
 
-    public Categoria(String codigo, String nome) {
+    public Categoria(int codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 

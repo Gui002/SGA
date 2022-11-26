@@ -28,7 +28,7 @@ public class MaterialDAO implements CRUD<Material>{
     }
     
     public void inserir(Material material){
-        String codigo_categoria = material.getCodigoCategoria();
+        int codigo_categoria = material.getCodigoCategoria();
         String marca = material.getMarca();
         String nome = material.getNome();
         float taxa_diaria = material.getTaxaDiaria();
@@ -39,7 +39,7 @@ public class MaterialDAO implements CRUD<Material>{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
         
-            preparedStatement.setInt(1, Integer.parseInt(codigo_categoria));
+            preparedStatement.setInt(1, codigo_categoria);
             preparedStatement.setString(2, marca);
             preparedStatement.setString(3, nome);
             preparedStatement.setFloat(4, taxa_diaria);
@@ -59,7 +59,7 @@ public class MaterialDAO implements CRUD<Material>{
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();    
             PreparedStatement preparedStatement = conexao.prepareStatement(query);
-            preparedStatement.setString(1, material.getCodigo());
+            preparedStatement.setInt(1, material.getCodigo());
             preparedStatement.executeUpdate();
             conexao.close();
         }catch(SQLException se){
@@ -79,8 +79,8 @@ public class MaterialDAO implements CRUD<Material>{
             ResultSet result = preparedStatement.executeQuery();
             
             while(result.next()){
-                String codigo = result.getString("codigo");
-                String codigo_categoria = result.getString("codigo_categoria");
+                int codigo = result.getInt("codigo");
+                int codigo_categoria = result.getInt("codigo_categoria");
                 String nome = result.getString("nome");
                 String marca = result.getString("marca");
                 float taxa_diaria = result.getFloat("taxa_diaria");

@@ -12,10 +12,11 @@ import java.sql.Date;
  * @author Fabricio
  */
 public class Aluguel {
-     private String codigoCliente, codigoUnidade, codigoEmpregado;
+    private int codigoUnidade;
+    private String codigoCliente, codigoEmpregado; 
     private Date data_aluguel, data_devolucao;
 
-    public Aluguel(String codigoCliente, String codigoUnidade, String codigoEmpregado, Date data_aluguel, Date data_devolucao) {
+    public Aluguel(String codigoCliente, int codigoUnidade, String codigoEmpregado, Date data_aluguel, Date data_devolucao) {
         this.codigoCliente = codigoCliente;
         this.codigoUnidade = codigoUnidade;
         this.codigoEmpregado = codigoEmpregado;
@@ -33,11 +34,11 @@ public class Aluguel {
         this.codigoCliente = codigoCliente;
     }
 
-    public String getCodigoUnidade() {
+    public int getCodigoUnidade() {
         return codigoUnidade;
     }
 
-    public void setCodigoUnidade(String codigoUnidade) {
+    public void setCodigoUnidade(int codigoUnidade) {
         this.codigoUnidade = codigoUnidade;
     }
 

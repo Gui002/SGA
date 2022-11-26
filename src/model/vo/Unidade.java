@@ -12,31 +12,31 @@ import controller.Enumeracoes.*;
  * @author Fabricio
  */
 public class Unidade {
-    private String codigo;
-    private String codigoMaterial;
+    private int codigo;
+    private int codigoMaterial;
     private Disponibilidade disponibilidade;
     private EstadoDeConservacao estadoConservacao;
 
-    public Unidade(String codigo, String codigoMaterial, Disponibilidade disponibilidade, EstadoDeConservacao estadoConservacao) {
+    public Unidade(int codigo, int codigoMaterial, Disponibilidade disponibilidade, EstadoDeConservacao estadoConservacao) {
         this.codigo = codigo;
         this.codigoMaterial = codigoMaterial;
         this.disponibilidade = disponibilidade;
         this.estadoConservacao = estadoConservacao;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
-    public String getCodigoMaterial() {
+    public int getCodigoMaterial() {
         return codigoMaterial;
     }
 
-    public void setCodigoMaterial(String codigoMaterial) {
+    public void setCodigoMaterial(int codigoMaterial) {
         this.codigoMaterial = codigoMaterial;
     }
 
