@@ -17,7 +17,7 @@ import model.vo.Categoria;
  * @author Fabricio
  */
 public class CategoriaController {
-    CategoriaDAO categoriaDAO;
+    private CategoriaDAO categoriaDAO;
     
     public CategoriaController(){
         categoriaDAO = new CategoriaDAO();

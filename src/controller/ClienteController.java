@@ -13,7 +13,7 @@ import model.vo.Cliente;
  * @author Fabricio
  */
 public class ClienteController {
-    ClienteDAO clienteDAO;
+    private ClienteDAO clienteDAO;
     
     public ClienteController(){
         clienteDAO = new ClienteDAO();
