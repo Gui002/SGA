@@ -28,7 +28,7 @@ public class Controller {
         float taxa_diaria = Float.parseFloat(campoTaxa.getText());
 
         Material material = new Material(codigo_categoria, Marca, Nome, taxa_diaria);
-        materialDao.inserirSemCodigo(material);
+        materialDao.inserir(material);
 
     }
 

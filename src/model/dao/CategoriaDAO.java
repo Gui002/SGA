@@ -27,28 +27,11 @@ public class CategoriaDAO implements CRUD<Categoria>{
     }
 
     public void inserir(Categoria categoria){
-        String codigo = categoria.getCodigo();
         String nome = categoria.getNome();
-        String query = "insert into categoria(codigo, nome) values (?, ?)"; 
+        String query = "insert into categoria(codigo, nome) values (null, ?)"; 
         
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
-            PreparedStatement preparedStatement = conexao.prepareStatement(query);
-            preparedStatement.setString(1, codigo);
-            preparedStatement.setString(2, nome);
-            preparedStatement.executeUpdate();
-            conexao.close();
-        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-    }
-    
-    public void inserirSemCodigo(Categoria categoria){
-        String nome = categoria.getNome();
-        String query = "insert into categoria( nome) values (?)"; 
-        
-        try{
-            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();    
             PreparedStatement preparedStatement = conexao.prepareStatement(query);
             preparedStatement.setString(1, nome);
             preparedStatement.executeUpdate();
@@ -57,7 +40,7 @@ public class CategoriaDAO implements CRUD<Categoria>{
             System.out.println(ex.getMessage());
         }
     }
-
+    
     @Override
     public void remover(Categoria categoria) {
         String query = "delete from categoria where codigo = ?";
