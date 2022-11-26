@@ -5,7 +5,6 @@
  */
 package model.dao;
 
-import controller.Enumeracoes;
 import controller.Enumeracoes.Disponibilidade;
 import controller.Enumeracoes.EstadoDeConservacao;
 import java.sql.Connection;
@@ -14,8 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Conexao;
 import static model.dao.BancoDeDados.*;
 import model.vo.Unidade;
