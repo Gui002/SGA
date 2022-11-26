@@ -5,6 +5,8 @@
  */
 package model.dao;
 
+import controller.Enumeracoes;
+import controller.Enumeracoes.EstadoDeConservacao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -69,6 +71,27 @@ public class AluguelDAO implements CRUD<Aluguel>{
            conexao.close();
         }catch(SQLException se){
             System.out.println("erro ao tentar remover aluguel");
+        }
+    }
+    
+    
+    public void atualizarAluguel(int codigoAluguel, Date data_devolucao, EstadoDeConservacao estadoDeConservacao){
+        String query = "UPDATE Aluguel set data_devolucao = ?, estado_conservacao = ? WHERE codigo = ?";
+        
+        try{
+           Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
+           PreparedStatement preparedStatement = conexao.prepareStatement(query);
+           
+           preparedStatement.setDate(1, data_devolucao);
+           preparedStatement.setString(2, estadoDeConservacao.toString());
+           preparedStatement.setInt(3, codigoAluguel);
+           
+           preparedStatement.executeUpdate();
+           
+           conexao.close();
+           
+        }catch(SQLException se){
+            System.out.println("erro ao atualizar aluguel: " + se.getSQLState());
         }
     }
 
