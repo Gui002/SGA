@@ -86,6 +86,7 @@ public class MaterialDAO implements CRUD<Material>{
                 float taxa_diaria = result.getFloat("taxa_diaria");
                 
                 Material material = new Material(codigo, codigo_categoria, marca, nome, taxa_diaria);
+                materiais.add(material);
             }
             
             conexao.close();

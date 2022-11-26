@@ -123,7 +123,7 @@ public class TelaAdicionar extends JFrame implements ActionListener, MouseListen
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == btnAdicionar) {
-            //c.adicionaMaterial();
+            c.adicionaMaterial();
             System.out.println("Adicionado com sucesso");
             nome.setText("Digite o nome do equipamento");
            

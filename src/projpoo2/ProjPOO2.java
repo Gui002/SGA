@@ -20,10 +20,12 @@ public class ProjPOO2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new TelaPrincipal(); 
+        //new TelaPrincipal(); 
         //Mudei este comentario
         //Alteracoes funcionando
         //Alteracoes no DAO CRUD, unidade, material, categoria, 
+        model.dao.MaterialDAO md = new model.dao.MaterialDAO();
+        System.out.println((java.util.ArrayList) md.selecionar());
     }
     
 }
