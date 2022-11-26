@@ -5,8 +5,9 @@
  */
 package controller;
 
+import controller.Enumeracoes.EstadoDeConservacao;
 import java.time.Instant;
-import java.util.Date;
+import java.sql.Date;
 import model.dao.AluguelDAO;
 import model.vo.Aluguel;
 import model.vo.Cliente;
@@ -24,22 +25,22 @@ public class AluguelController {
         aluguelDAO = new AluguelDAO();
     }
     
-    public void novoAluguel(Cliente cliente, Empregado empregado, Unidade unidade){
+    public void novoAluguel(String codigoCliente, String codigoEmpregado, int codigoUnidade){
         Aluguel aluguel = new Aluguel(
-                cliente.getCodigo(),
-                unidade.getCodigo(), 
-                empregado.getCodigo(),
-                (java.sql.Date)Date.from(Instant.now()),
+                codigoCliente,
+                codigoUnidade, 
+                codigoEmpregado,
+                (Date) java.util.Date.from(Instant.now()),
                 null);
-        
-        aluguelDAO.inserirSemDataDevolucao(aluguel);
+        aluguelDAO.inserir(aluguel);
     }
     
-    public void adicionarDevolucao(){
-    
+    public void adicionarDevolucao(int codigoAluguel, Date data_devolucao, EstadoDeConservacao estadoDeConservacao){
+        aluguelDAO.atualizarAluguel(codigoAluguel, data_devolucao, estadoDeConservacao);
     }
     
-    public void removerAluguel(){
-    
+    public void removerAluguel(String codigoCliente, String codigoEmpregado, int codigoUnidade){
+        Aluguel aluguel = new Aluguel(codigoCliente, codigoUnidade, codigoEmpregado, null, null);
+        aluguelDAO.remover(aluguel);
     }
 }
