@@ -51,12 +51,15 @@ public class ClienteDAO implements CRUD<Cliente>{
     }
 
     @Override
-    public void remover(Cliente e) {
+    public void remover(Cliente cliente) {
        String query = "DELETE FROM CLIENTE WHERE codigo = ?";
        
        try{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
            PreparedStatement preparedStatement  = conexao.prepareStatement(query);
+           preparedStatement.setString(1, cliente.getCodigo());
+           preparedStatement.executeUpdate();
+           conexao.close();
        } catch (SQLException se) {
            System.out.println("erro ao tentar remover cliente: " + se.getMessage());
         }
@@ -64,7 +67,7 @@ public class ClienteDAO implements CRUD<Cliente>{
 
     @Override
     public List<Cliente> selecionar() {
-        ArrayList clientes = new ArrayList();
+        ArrayList<Cliente> clientes = new ArrayList();
         String query = "SELECT * FROM Cliente";
         
         try{
