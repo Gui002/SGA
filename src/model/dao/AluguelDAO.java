@@ -30,11 +30,11 @@ public class AluguelDAO implements CRUD<Aluguel>{
         String codigoEmpregado = aluguel.getCodigoEmpregado();
         int codigoUnidade = aluguel.getCodigoUnidade();
         Date data_inicio = aluguel.getData_aluguel();
-        Date data_devolucao = aluguel.getData_devolucao();
+        
         
         String query = "INSERT INTO Aluguel"
-                + " (codigo_cliente, codigo_unidade, codigo_empregado, data_inicio, data_devolucao)"
-                + " VALUES (?, ?, ?, ?, ?, ?)";
+                + " (codigo_cliente, codigo_unidade, codigo_empregado, data_inicio)"
+                + " VALUES (?, ?, ?, ?)";
         
         try{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
@@ -44,7 +44,6 @@ public class AluguelDAO implements CRUD<Aluguel>{
            preparedStatement.setInt(2, codigoUnidade);
            preparedStatement.setString(3, codigoEmpregado);
            preparedStatement.setDate(4, data_inicio);
-           preparedStatement.setDate(5, data_devolucao);
            
            preparedStatement.executeUpdate();
            
