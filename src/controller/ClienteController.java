@@ -5,10 +5,27 @@
  */
 package controller;
 
+import model.dao.ClienteDAO;
+import model.vo.Cliente;
+
 /**
  *
  * @author Fabricio
  */
 public class ClienteController {
+    ClienteDAO clienteDAO;
+    
+    public ClienteController(){
+        clienteDAO = new ClienteDAO();
+    }
+    
+    public boolean inserir(String codigo, String nome, String telefone, String endereco){
+        Cliente cliente = new Cliente(codigo, nome, telefone, endereco);
+        return  clienteDAO.inserir(cliente);
+    }
+    
+    public boolean remover(String codigo){
+        return clienteDAO.remover(new Cliente(codigo, "", "", ""));
+    }
     
 }
