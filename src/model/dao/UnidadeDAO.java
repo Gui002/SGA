@@ -36,8 +36,8 @@ public class UnidadeDAO implements CRUD<Unidade>{
         String disponibilidade = unidade.getDisponibilidade().toString();
         String estado = unidade.getEstadoConservacao().toString();
         
-        String query = "insert into Unidade (codigo, codigo_material, disponibilidade, estado_conservacao)"
-                + " values (null, ?, ?, ?)";
+        String query = "INSERT INTO Unidade (codigo, codigo_material, disponibilidade, estado_conservacao)"
+                + " VALUES (null, ?, ?, ?)";
         
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
@@ -54,29 +54,7 @@ public class UnidadeDAO implements CRUD<Unidade>{
         }
     }
     
-     public void inserirSemCodigo(Unidade unidade){
-        int codigo_material = unidade.getCodigoMaterial();
-        String disponibilidade = unidade.getDisponibilidade().toString();
-        String estado = unidade.getEstadoConservacao().toString();
-        
-        String query = "insert into Unidade values(codigo_material, disponibilidade, estado_conservacao)"
-                + " values (?, ?, ?)";
-        
-        try{
-            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
-            PreparedStatement preparedStatement  = conexao.prepareStatement(query);
-            preparedStatement.setInt(1, codigo_material);
-            preparedStatement.setString(2, disponibilidade);
-            preparedStatement.setString(3, estado);
-            
-            preparedStatement.executeUpdate();
-            
-            conexao.close();
-        }catch(SQLException se){
-            System.out.println("erro ao tentar inserir unidade" + se.getMessage());
-        }
-    }
-
+    
     @Override
     public void remover(Unidade unidade) {
         String query = "DELETE FROM Unidade WHERE codigo = ?";

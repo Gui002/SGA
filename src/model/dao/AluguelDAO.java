@@ -56,7 +56,7 @@ public class AluguelDAO implements CRUD<Aluguel>{
 
     @Override
     public void remover(Aluguel e) {
-        String query = "REMOVE FROM Aluguel WHERE codigo_cliente = ?"
+        String query = "DELETE FROM Aluguel WHERE codigo_cliente = ?"
                 + "AND codigo_unidade = ? AND codigo_empregado = ?";
         try{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
