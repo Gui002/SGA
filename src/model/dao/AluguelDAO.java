@@ -30,8 +30,8 @@ public class AluguelDAO implements CRUD<Aluguel>{
         String codigoCliente = aluguel.getCodigoCliente();
         String codigoEmpregado = aluguel.getCodigoEmpregado();
         String codigoUnidade = aluguel.getCodigoUnidade();
-        String data_inicio = aluguel.getData_aluguel().toString();
-        String data_devolucao = aluguel.getData_devolucao().toString();
+        Date data_inicio = aluguel.getData_aluguel();
+        Date data_devolucao = aluguel.getData_devolucao();
         
         String query = "INSERT INTO Aluguel"
                 + " (codigo_cliente, codigo_unidade, codigo_empregado, data_inicio, data_devolucao)"
@@ -44,8 +44,8 @@ public class AluguelDAO implements CRUD<Aluguel>{
            preparedStatement.setString(1, codigoCliente);
            preparedStatement.setString(2, codigoUnidade);
            preparedStatement.setString(3, codigoEmpregado);
-           preparedStatement.setString(4, data_inicio);
-           preparedStatement.setString(5, data_devolucao);
+           preparedStatement.setDate(4, data_inicio);
+           preparedStatement.setDate(5, data_devolucao);
            
            preparedStatement.executeUpdate();
            
@@ -88,8 +88,8 @@ public class AluguelDAO implements CRUD<Aluguel>{
                String codigoCliente = result.getString("codigo_cliente");
                String codigoUnidade = result.getString("codigo_unidade");
                String codigoEmpregado = result.getString("codigo_empregado");
-               Date data_aluguel = result.getObject("data_inicio", Date.class);
-               Date data_devolucao = result.getObject("data_devolucao", Date.class);
+               Date data_aluguel = result.getDate("data_inicio");
+               Date data_devolucao = result.getDate("data_devolucao");
                
                Aluguel aluguel = new Aluguel(codigoCliente, codigoUnidade, codigoEmpregado, data_aluguel, data_devolucao);
             
