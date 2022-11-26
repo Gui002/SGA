@@ -28,7 +28,7 @@ public class UnidadeDAO implements CRUD<Unidade>{
     }
     
     @Override
-    public void inserir(Unidade unidade){
+    public boolean inserir(Unidade unidade){
         int codigo_material = unidade.getCodigoMaterial();
         String disponibilidade = unidade.getDisponibilidade().toString();
         String estado = unidade.getEstadoConservacao().toString();
@@ -36,6 +36,7 @@ public class UnidadeDAO implements CRUD<Unidade>{
         String query = "INSERT INTO Unidade (codigo, codigo_material, disponibilidade, estado_conservacao)"
                 + " VALUES (null, ?, ?, ?)";
         
+        int linhasAfetadas = 0;
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
@@ -43,30 +44,34 @@ public class UnidadeDAO implements CRUD<Unidade>{
             preparedStatement.setString(2, disponibilidade);
             preparedStatement.setString(3, estado);
           
-            preparedStatement.executeUpdate();
+            linhasAfetadas = preparedStatement.executeUpdate();
             
             conexao.close();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
+        
+        return linhasAfetadas > 0;
     }
     
     
     @Override
-    public void remover(Unidade unidade) {
+    public boolean remover(Unidade unidade) {
         String query = "DELETE FROM Unidade WHERE codigo = ?";
-        
+        int linhasAfetadas = 0;
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
             preparedStatement.setInt(1, unidade.getCodigo());
             
-            preparedStatement.executeUpdate();
+            linhasAfetadas = preparedStatement.executeUpdate();
             
             conexao.close();
         } catch (SQLException se) {
             System.out.println("erro ao tentar remover unidade" + se.getMessage());
         }
+        
+        return linhasAfetadas > 0;
     }
 
     @Override

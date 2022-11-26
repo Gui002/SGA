@@ -25,7 +25,7 @@ public class MaterialDAO implements CRUD<Material>{
      
     }
     
-    public void inserir(Material material){
+    public boolean inserir(Material material){
         int codigo_categoria = material.getCodigoCategoria();
         String marca = material.getMarca();
         String nome = material.getNome();
@@ -33,6 +33,8 @@ public class MaterialDAO implements CRUD<Material>{
         
         String query = "INSERT INTO MATERIAL (codigo, codigo_categoria, marca, nome, taxa_diaria)" 
                 +" VALUES (null, ?, ?, ?, ?)";
+        
+        int linhasAfetadas = 0;
           try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
             PreparedStatement preparedStatement  = conexao.prepareStatement(query);
@@ -41,28 +43,32 @@ public class MaterialDAO implements CRUD<Material>{
             preparedStatement.setString(2, marca);
             preparedStatement.setString(3, nome);
             preparedStatement.setFloat(4, taxa_diaria);
-            preparedStatement.executeUpdate();
+            linhasAfetadas = preparedStatement.executeUpdate();
             System.out.println(conexao);
             conexao.close();
         }catch(SQLException se){
             System.out.println("erro ao tenter inserir material" + se.getMessage());
         }
-        
+          
+       return linhasAfetadas > 0;   
     }
     
 
     @Override
-    public void remover(Material material) {
+    public boolean remover(Material material) {
         String query = "DELETE FROM MATERIAL WHERE codigo = ?";
+        int linhasAfetadas = 0;
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();    
             PreparedStatement preparedStatement = conexao.prepareStatement(query);
             preparedStatement.setInt(1, material.getCodigo());
-            preparedStatement.executeUpdate();
+            linhasAfetadas = preparedStatement.executeUpdate();
             conexao.close();
         }catch(SQLException se){
             System.out.println("erro ao tentar remover material: " + se.getMessage());
         }
+        
+        return linhasAfetadas > 0;
     }
 
     @Override

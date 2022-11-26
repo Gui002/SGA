@@ -26,7 +26,7 @@ import model.vo.Empregado;
 public class EmpregadoDAO implements CRUD<Empregado>{
 
     @Override
-    public void inserir(Empregado empregado) {
+    public boolean inserir(Empregado empregado) {
         String codigo = empregado.getCodigo();
         String nome = empregado.getNome();
         String senha = empregado.getSenha();
@@ -37,6 +37,8 @@ public class EmpregadoDAO implements CRUD<Empregado>{
         
         String query = "INSERT INTO Empregado (codigo, nome, sexo, senha, telefone, endereco, tipo)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
+        int linhasAfetadas = 0;
         
         try{
             Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
@@ -50,26 +52,33 @@ public class EmpregadoDAO implements CRUD<Empregado>{
             preparedStatement.setString(6, endereco);
             preparedStatement.setString(7, tipo.toString());
             
-            preparedStatement.executeUpdate();
+            linhasAfetadas = preparedStatement.executeUpdate();
             
             conexao.close();
         } catch (SQLException se) {
             System.out.println("Erro ao tentar inserir empregado: " + se);
         }
+        
+        return linhasAfetadas > 0;
     }
 
     @Override
-    public void remover(Empregado empregado) {
+    public boolean remover(Empregado empregado) {
         String query = "DELETE FROM CLIENTE WHERE codigo = ?";
+        
+        int linhasAfetadas = 0;
+        
         try{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
            PreparedStatement preparedStatement  = conexao.prepareStatement(query);
            preparedStatement.setString(1, empregado.getCodigo());
-           preparedStatement.executeUpdate();
+           linhasAfetadas = preparedStatement.executeUpdate();
            conexao.close();
         }catch (SQLException se) {
            System.out.println("erro ao tentar remover cliente: " + se.getMessage());
         }
+        
+        return linhasAfetadas > 0;
     }
 
     @Override

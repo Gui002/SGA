@@ -24,7 +24,7 @@ import model.vo.Cliente;
 public class ClienteDAO implements CRUD<Cliente>{
 
     @Override
-    public void inserir(Cliente cliente) {
+    public boolean inserir(Cliente cliente) {
        String codigo = cliente.getCodigo();
        String nome = cliente.getNome();
        String endereco = cliente.getEndereco();
@@ -32,6 +32,8 @@ public class ClienteDAO implements CRUD<Cliente>{
        
        String query = "INSERT INTO Cliente (codigo, nome, endereco, telefone)"
                + "VALUES (?, ?, ?, ?)";   
+       
+       int linhasAfetadas = 0;
        
        try{
           Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
@@ -42,27 +44,29 @@ public class ClienteDAO implements CRUD<Cliente>{
           preparedStatement.setString(3, endereco);
           preparedStatement.setString(4, telefone);
           
-          preparedStatement.executeUpdate();
+          linhasAfetadas = preparedStatement.executeUpdate();
           
           conexao.close();
        }catch(SQLException se){
            System.out.println("erro ao tentar inserir cliente: " + se.getMessage());
        }
+       return linhasAfetadas > 0;
     }
 
     @Override
-    public void remover(Cliente cliente) {
+    public boolean remover(Cliente cliente) {
        String query = "DELETE FROM CLIENTE WHERE codigo = ?";
-       
+       int linhasAfetadas = 0;
        try{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();  
            PreparedStatement preparedStatement  = conexao.prepareStatement(query);
            preparedStatement.setString(1, cliente.getCodigo());
-           preparedStatement.executeUpdate();
+           linhasAfetadas = preparedStatement.executeUpdate();
            conexao.close();
        } catch (SQLException se) {
            System.out.println("erro ao tentar remover cliente: " + se.getMessage());
         }
+       return linhasAfetadas > 0;
     }
 
     @Override

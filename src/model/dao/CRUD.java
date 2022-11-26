@@ -12,7 +12,7 @@ import java.util.List;
  * @author ADMIN
  */
 public interface CRUD <E>{
-    void inserir(E e);
-    void remover(E e);
+    boolean inserir(E e);
+    boolean remover(E e);
     List<E> selecionar();
 }

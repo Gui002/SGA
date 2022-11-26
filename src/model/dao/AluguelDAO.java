@@ -27,12 +27,12 @@ import model.vo.Aluguel;
 public class AluguelDAO implements CRUD<Aluguel>{
 
     @Override
-    public void inserir(Aluguel aluguel) {
+    public boolean inserir(Aluguel aluguel) {
         String codigoCliente = aluguel.getCodigoCliente();
         String codigoEmpregado = aluguel.getCodigoEmpregado();
         int codigoUnidade = aluguel.getCodigoUnidade();
         Date data_inicio = aluguel.getData_aluguel();
-        
+        int linhasAfetadas = 0;
         
         String query = "INSERT INTO Aluguel"
                 + " (codigo_cliente, codigo_unidade, codigo_empregado, data_inicio)"
@@ -47,18 +47,22 @@ public class AluguelDAO implements CRUD<Aluguel>{
            preparedStatement.setString(3, codigoEmpregado);
            preparedStatement.setDate(4, data_inicio);
            
-           preparedStatement.executeUpdate();
+           linhasAfetadas = preparedStatement.executeUpdate();
            
            conexao.close();
         }catch(SQLException se){
             System.out.println(se.getMessage());
         }
+        
+        return linhasAfetadas > 0;
     }
 
     @Override
-    public void remover(Aluguel e) {
+    public boolean remover(Aluguel e) {
         String query = "DELETE FROM Aluguel WHERE codigo_cliente = ?"
                 + "AND codigo_unidade = ? AND codigo_empregado = ?";
+        
+        int linhasAfetadas = 0;
         try{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
            PreparedStatement preparedStatement = conexao.prepareStatement(query);
@@ -66,18 +70,20 @@ public class AluguelDAO implements CRUD<Aluguel>{
            preparedStatement.setInt(2, e.getCodigoUnidade());
            preparedStatement.setString(3, e.getCodigoEmpregado());
            
-           preparedStatement.executeUpdate();
+           linhasAfetadas = preparedStatement.executeUpdate();
            
            conexao.close();
         }catch(SQLException se){
             System.out.println("erro ao tentar remover aluguel");
         }
+        
+        return linhasAfetadas > 0;
     }
     
     
-    public void atualizarAluguel(int codigoAluguel, Date data_devolucao, EstadoDeConservacao estadoDeConservacao){
+    public boolean atualizarAluguel(int codigoAluguel, Date data_devolucao, EstadoDeConservacao estadoDeConservacao){
         String query = "UPDATE Aluguel set data_devolucao = ?, estado_conservacao = ? WHERE codigo = ?";
-        
+        int linhasAfetadas = 0;
         try{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
            PreparedStatement preparedStatement = conexao.prepareStatement(query);
@@ -86,13 +92,15 @@ public class AluguelDAO implements CRUD<Aluguel>{
            preparedStatement.setString(2, estadoDeConservacao.toString());
            preparedStatement.setInt(3, codigoAluguel);
            
-           preparedStatement.executeUpdate();
+           linhasAfetadas = preparedStatement.executeUpdate();
            
            conexao.close();
            
         }catch(SQLException se){
             System.out.println("erro ao atualizar aluguel: " + se.getSQLState());
         }
+        
+        return linhasAfetadas > 0;
     }
 
     @Override
