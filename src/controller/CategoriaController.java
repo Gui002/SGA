@@ -19,6 +19,7 @@ import model.vo.Categoria;
 public class CategoriaController {
     private CategoriaDAO categoriaDAO;
     
+    
     public CategoriaController(){
         categoriaDAO = new CategoriaDAO();
     }
@@ -45,6 +46,16 @@ public class CategoriaController {
         
         categoriaDAO.selecionar().forEach((categoria) -> {
             codigos.put(categoria.getNome(), categoria.getCodigo());
+        });
+        
+        return codigos;
+    }
+    
+    public Map<Integer, String> MapaCodigoNome(){
+        Map<Integer, String> codigos = new HashMap(); 
+        
+        categoriaDAO.selecionar().forEach((categoria) -> {
+            codigos.put(categoria.getCodigo(), categoria.getNome());
         });
         
         return codigos;
