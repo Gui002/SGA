@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import model.dao.CategoriaDAO;
 import model.vo.Categoria;
+import utilitarios.Coleccoes;
 
 /**
  *
@@ -18,46 +19,47 @@ import model.vo.Categoria;
  */
 public class CategoriaController {
     private CategoriaDAO categoriaDAO;
-    
+    private long count = 0;
+    private List<Categoria> categorias;
     
     public CategoriaController(){
         categoriaDAO = new CategoriaDAO();
+        categorias = getCategorias();
+    }
+    
+    private void atualizar(){
+        if(count > 0){
+            categorias = getCategorias();
+            count ++;
+        }
     }
     
     public boolean inserir(String nome){
+        count ++;
         Categoria categoria = new Categoria(0, nome); //O codigo zero nao interessa a o codigo vai ser autogerado no banco de dados
         return categoriaDAO.inserir(categoria);
     }
     
     public boolean remover(int codigo){
+        count++;
         return categoriaDAO.remover(new Categoria(codigo, ""));
     }
     
-    public List<String> obterCategorias(){
-        ArrayList<String> categorias = new ArrayList();
-        categoriaDAO.selecionar().forEach((categoria) -> {
-            categorias.add(categoria.getNome());
-        }); 
-        return categorias;
+    public List<Categoria> getCategorias(){
+        return categoriaDAO.selecionar();
     }
     
-    public Map<String, Integer> MapaNomeCodigo(){
-        Map<String, Integer> codigos = new HashMap(); 
+    public Map<String, String> getCategoria(int codigo){
+        atualizar();
+        Map<String, String> result = new HashMap();
         
-        categoriaDAO.selecionar().forEach((categoria) -> {
-            codigos.put(categoria.getNome(), categoria.getCodigo());
+        Categoria categoria = Coleccoes.achar(categorias, (Categoria c)->{
+            return c.getCodigo() == codigo;
         });
         
-        return codigos;
-    }
-    
-    public Map<Integer, String> MapaCodigoNome(){
-        Map<Integer, String> codigos = new HashMap(); 
+        result.put("codigo", (categoria == null)? "": categoria.getCodigo() + "");
+        result.put("nome", (categoria == null)? "": categoria.getNome());
         
-        categoriaDAO.selecionar().forEach((categoria) -> {
-            codigos.put(categoria.getCodigo(), categoria.getNome());
-        });
-        
-        return codigos;
+        return result;
     }
 }
