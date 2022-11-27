@@ -21,13 +21,7 @@ public class ProjPOO2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new TelaPrincipal(); 
-        //Mudei este comentario
-        //Alteracoes funcionando
-        //Alteracoes no DAO CRUD, unidade, material, categoria, 
-//        model.dao.UnidadeDAO ud = new model.dao.UnidadeDAO();
-//        ud.remover(new model.vo.Unidade(1, 1, Enumeracoes.Disponibilidade.DISPONIVEL, Enumeracoes.EstadoDeConservacao.CONSERVADO));
-//        System.out.println((java.util.ArrayList) ud.selecionar());
+        new TelaPrincipal();  
     }
     
 }
