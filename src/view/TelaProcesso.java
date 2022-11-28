@@ -10,7 +10,8 @@ public class TelaProcesso  {
     JPanel pn_produto, pn_usuario, pn_processo;
     JLabel fotoEquipamento, fotoCliente, perfilClient, nomeEquip, categoria, identificacao, marca, taxa_diaria;
     JTextField nomeCliente,contacto, endereco;
-    JButton cancelar, alugar;
+
+    JButton btncancelar, btnalugar;
     public TelaProcesso() {
         pn_processo = new JPanel();
         pn_produto = new JPanel();
@@ -20,8 +21,9 @@ public class TelaProcesso  {
         pn_produto.setLayout(null);
         nomeCliente = new JTextField("NOME DO CLIENTE");
         contacto = new JTextField("CONTACTO DO CLIENTE");
-        alugar = new JButton("Alugar");
-        cancelar = new JButton("Cancelar");
+        endereco = new JTextField("LOCALIZACAO");
+        btnalugar = new JButton("Alugar");
+        btncancelar = new JButton("Cancelar");
         fotoEquipamento = new JLabel("Foto do equipamento");
         fotoCliente = new JLabel("Perfil padrao");
         nomeEquip = new JLabel("Nome:  Britadeira");
@@ -57,14 +59,20 @@ public class TelaProcesso  {
         Sizer.resizeRelativeTo(categoria, pn_produto, 0.8f, 0.1f);
         Sizer.resizeRelativeTo(nomeCliente, pn_usuario, .9f, .07f);
         Sizer.resizeRelativeTo(contacto, pn_usuario, .9f, .07f);
+        Sizer.resizeRelativeTo(endereco, pn_usuario, .9f, .07f);
+        Sizer.resizeRelativeTo(btncancelar, pn_usuario, .3f, .07f);
+        Sizer.resizeRelativeTo(btnalugar, pn_usuario, .3f, .07f);
+       
 
         //Bordas
         nomeCliente.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Nome")));
         contacto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Contacto")));
+        endereco.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Local")));
 
         //Adicionando
         ComponentPlacer.superiorEsquerdo(pn_processo, pn_produto);
         ComponentPlacer.superiorDireito(pn_processo, pn_usuario);
+        ComponentPlacer.colocarEm(pn_usuario, btnalugar, ComponentPlacer.LEFT, ComponentPlacer.BOTTOM);
         //No painelProduto
         ComponentPlacer.colocarEm(pn_produto, fotoEquipamento, ComponentPlacer.LEFT, ComponentPlacer.TOP);
         ComponentPlacer.abaixo(pn_produto, fotoEquipamento, identificacao, 0);
@@ -79,11 +87,23 @@ public class TelaProcesso  {
         ComponentPlacer.abaixo(pn_usuario, nomeCliente, contacto);
         ComponentPlacer.offset(contacto, 0, 15);
         
+        ComponentPlacer.abaixo(pn_usuario, contacto, endereco );
+        ComponentPlacer.offset(endereco, 0, 15);
+        
 //        marca.setLocation(Sizer.offsets(1, pn_produto.getWidth(), marca.getWidth(), 0), marca.getY());
 //        int paddingH = Sizer.offsets(1, pn_produto.getWidth(), marca.getWidth(), 0);
 //        int paddingV = Sizer.offsets(1, pn_produto.getHeight(), marca.getHeight(), 0);
 //         marca.setLocation(paddingH, paddingV);
     }
+    
+    public JLabel getNomeEquip() {
+        return nomeEquip;
+    }
+
+    public void setNomeEquip(JLabel nomeEquip) {
+        this.nomeEquip = nomeEquip;
+    }
+    
 
     public JPanel getPn_processo() {
         return pn_processo;

@@ -148,7 +148,8 @@ public class TelaPrincipal implements ActionListener, MouseListener {
 
         //Adicionando as labels de categorias
         for (int i = 0; i < btnCategorias.length; i++) {
-            btnCategorias[i] = new JButton("categoria" + i);
+            btnCategorias[i] = new JButton(new ImageIcon("src/imagens/Empilhadeira.jpg"));
+           // btnCategorias[i] = new JButton("categoria" + i);
             Sizer.resizeRelativeTo(btnCategorias[i], pnCategorias, .2f, .4f);
             btnCategorias[i].addActionListener(this);
             btnCategorias[i].setBackground(Color.CYAN);

@@ -51,9 +51,9 @@ public class TelaAdicionar extends JFrame implements ActionListener, MouseListen
             "EQUIPAMENTOS PARA ACESSO E ELEVAÇÃO",
             "EQUIPAMENTOS PARA FURAÇÃO E DEMOLIÇÃO",
             "FERRAMENTAS ELÉTRICAS",
-            "GERADOR", 
+            "GERADOR",
             "BOMBA",
-             "COMPRESSOR"};
+            "COMPRESSOR"};
         categorias = new JComboBox(ctgs);
 
         //Tamanhos
@@ -68,7 +68,7 @@ public class TelaAdicionar extends JFrame implements ActionListener, MouseListen
         Sizer.resizeRelativeTo(btnAdicionar, pnAdd, .3f, .07f);
 
         //Cores
-        pnAdd.setBackground(new Color(255, 247, 83,200));
+        pnAdd.setBackground(new Color(255, 247, 83, 200));
         pnAdicionar.setBackground(new Color(255, 247, 83, 159));
         btnAdicionar.setBackground(new Color(85, 255, 66, 151));
         btnCancelar.setBackground(new Color(255, 66, 66, 151));
@@ -82,7 +82,7 @@ public class TelaAdicionar extends JFrame implements ActionListener, MouseListen
 
         //Bordas
         //pnAdd.setBorder(BorderFactory.createTitledBorder("Adicionar"));
-       marca.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Marca")));
+        marca.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Marca")));
         categorias.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Categoria")));
         campoTaxa.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Taxa")));
         nome.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Nome")));
@@ -123,10 +123,10 @@ public class TelaAdicionar extends JFrame implements ActionListener, MouseListen
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == btnAdicionar) {
-            c.adicionaMaterial();
-            System.out.println("Adicionado com sucesso");
-            nome.setText("Digite o nome do equipamento");
-           
+            // c.adicionaMaterial();
+            JOptionPane.showMessageDialog(this, "Produto adicionado com sucesso");
+            //  nome.setText("Digite o nome do equipamento");
+
         }
     }
 
@@ -148,13 +148,13 @@ public class TelaAdicionar extends JFrame implements ActionListener, MouseListen
             btnAdicionar.setBackground(Color.GREEN);
             btnAdicionar.setForeground(Color.WHITE);
         }
-        
-        if(me.getSource() == btnCancelar){
+
+        if (me.getSource() == btnCancelar) {
             btnCancelar.setBackground(Color.RED);
             btnCancelar.setForeground(Color.WHITE);
         }
-        
-        if(me.getSource() == nome){
+
+        if (me.getSource() == nome) {
             nome.setText("");
         }
     }
@@ -164,15 +164,15 @@ public class TelaAdicionar extends JFrame implements ActionListener, MouseListen
         if (me.getSource() == btnAdicionar) {
             btnAdicionar.setBackground(new Color(255, 247, 83, 159));
             btnAdicionar.setForeground(Color.BLACK);
-        } 
-        
-        if(me.getSource() == btnCancelar){
+        }
+
+        if (me.getSource() == btnCancelar) {
             btnCancelar.setBackground(new Color(255, 66, 66, 240));
             btnCancelar.setForeground(Color.BLACK);
         }
-        
-        if(me.getSource() == nome){
-            if(nome.getText().equalsIgnoreCase("")){
+
+        if (me.getSource() == nome) {
+            if (nome.getText().equalsIgnoreCase("")) {
                 nome.setText("Digite o nome do equipamento");
             }
         }

@@ -24,6 +24,8 @@ public class MaterialController {
         return materialDAO.inserir(material);
     }
     
+    
+    
     public boolean remover(int codigo){
         return materialDAO.remover(new Material(codigo, 0, "", "", 0.0f));
     }
