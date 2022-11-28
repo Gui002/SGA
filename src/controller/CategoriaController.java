@@ -62,4 +62,14 @@ public class CategoriaController {
         
         return result;
     }
+    
+    public List<Integer> getCodigos(){
+        List<Integer> codigos = new ArrayList();
+        
+        categorias.forEach((c) -> {
+            codigos.add(c.getCodigo());
+        });
+        codigos.sort((a, b) -> {return  a - b;});
+        return codigos;
+    }
 }

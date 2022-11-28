@@ -31,8 +31,7 @@ public class TestPanel extends JPanel {
     private JPanel pnControle;
     private JPanel pnOperacao;
     private JPanel pnMain;
-    private String actualEntity = "";
-    private String actualOperation = "";
+    private List<String> nomesAtuais = new ArrayList();
 
     private Map<String, JButton> bEntidades;
     private Map<String, JButton> bControle;
@@ -326,6 +325,8 @@ public class TestPanel extends JPanel {
         bEntidades.get("Categoria").addActionListener((e) -> {
             pnMain.removeAll();
             String[] s = {"Codigo", "Nome"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
@@ -333,6 +334,8 @@ public class TestPanel extends JPanel {
         bEntidades.get("Material").addActionListener((e) -> {
             pnMain.removeAll();
             String[] s = {"Codigo", "Nome", "Codigo do Material", "Taxa diaria"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
@@ -340,6 +343,8 @@ public class TestPanel extends JPanel {
         bEntidades.get("Unidade").addActionListener((e) -> {
             pnMain.removeAll();
             String[] s = {"Codigo", "Codigo do Material", "Disponibilidade", "Estado de Conservacao"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
@@ -347,6 +352,8 @@ public class TestPanel extends JPanel {
         bEntidades.get("Empregado").addActionListener((e) -> {
             pnMain.removeAll();
             String[] s = {"Codigo", "Nome", "Telefone", "Endereco", "Sexo", "Senha", "Tipo"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
@@ -354,6 +361,8 @@ public class TestPanel extends JPanel {
         bEntidades.get("Cliente").addActionListener((e) -> {
             pnMain.removeAll();
             String[] s = {"Codigo", "Nome", "Telefone", "Endereco"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
@@ -361,6 +370,8 @@ public class TestPanel extends JPanel {
         bEntidades.get("Aluguel").addActionListener((e) -> {
             pnMain.removeAll();
             String[] s = {"Codigo do Cliente", "Codigo do Empregado", "Codigo da Unidade", "Data de Inicio", "Data de Devolucao"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
