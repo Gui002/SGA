@@ -38,6 +38,8 @@ public class TestPanel extends JPanel {
     private Map<String, JButton> bOperacoes;
     private HashMap<String, List<Component>> campos;
     private HashMap<String, JLabel> labels;
+    
+    private final ButtonGroup bgSexo = new ButtonGroup(), bgEstadoConservacao = new ButtonGroup(), bgDisponibilidade = new ButtonGroup();
 
     Color fundo1 = new Color(20, 26, 92);
     Color fundo2 = new Color(99, 95, 112);
@@ -201,15 +203,14 @@ public class TestPanel extends JPanel {
         String disponibilidadeComp[] =  {Disponibilidade.DISPONIVEL.toString(), Disponibilidade.INDISPONIVEL.toString()};
         String conservacaoComp[] =  {EstadoDeConservacao.CONSERVADO.toString(), EstadoDeConservacao.DANIFICADO.toString()};
         
-        addRadio("Sexo", Arrays.asList(sexoComp));
-        addRadio("Disponibilidade", Arrays.asList(disponibilidadeComp));
-        addRadio("Estado de Conservacao", Arrays.asList(conservacaoComp));
+        addRadios("Sexo", Arrays.asList(sexoComp), bgSexo);
+        addRadios("Disponibilidade", Arrays.asList(disponibilidadeComp), bgDisponibilidade);
+        addRadios("Estado de Conservacao", Arrays.asList(conservacaoComp), bgEstadoConservacao);
 
     }
 
-    private void addRadio(String nome, List<String> lista) {
+    private void addRadios(String nome, List<String> lista, ButtonGroup bg) {
         List<Component> ls = new ArrayList();
-        ButtonGroup bg = new ButtonGroup();
         JLabel label = labels.get(nome);
         lista.forEach((s) -> {
             JRadioButton rb = new JRadioButton(s);
