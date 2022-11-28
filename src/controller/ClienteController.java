@@ -49,8 +49,8 @@ public class ClienteController {
         return Coleccoes.achar(clientes, (Cliente c) -> {return c.getCodigo().equalsIgnoreCase(codigo);}) != null;
     }
     
-    public Map<String, String> getCliente(String codigo){
-        Map<String, String> result = new HashMap();
+    public Map<String, Object> getCliente(String codigo){
+        Map<String, Object> result = new HashMap();
         
         Cliente cliente = Coleccoes.achar(clientes, (Cliente c) -> {
             return c.getCodigo().equalsIgnoreCase(codigo);

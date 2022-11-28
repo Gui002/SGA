@@ -50,15 +50,15 @@ public class CategoriaController {
         return categoriaDAO.selecionar();
     }
     
-    public Map<String, String> getCategoria(int codigo){
+    public Map<String, Object> getCategoria(int codigo){
         atualizarLista();
-        Map<String, String> result = new HashMap();
+        Map<String, Object> result = new HashMap();
         
         Categoria categoria = Coleccoes.achar(categorias, (Categoria c)->{
             return c.getCodigo() == codigo;
         });
         
-        result.put("codigo", (categoria == null)? "": categoria.getCodigo() + "");
+        result.put("codigo", (categoria == null)? "": categoria.getCodigo());
         result.put("nome", (categoria == null)? "": categoria.getNome());
         
         return result;

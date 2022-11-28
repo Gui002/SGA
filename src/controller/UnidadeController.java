@@ -7,9 +7,12 @@ package controller;
 
 import controller.Enumeracoes.Disponibilidade;
 import controller.Enumeracoes.EstadoDeConservacao;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import model.dao.UnidadeDAO;
 import model.vo.Unidade;
+import utilitarios.Coleccoes;
 
 /**
  *
@@ -68,6 +71,22 @@ public class UnidadeController {
     
     public List<Unidade> getUnidadesIndiponiveis(){
         return unidadesIndisponiveis;
+    }
+    
+    public Map<String, Object> getUnidade(int codigo){
+        Map<String, Object> result = new HashMap();
+        
+        Unidade unidade = Coleccoes.achar(unidades, (Unidade u) -> {
+           return u.getCodigo() == codigo;
+        });
+        
+        result.put("codigo",             (unidade == null)? "":unidade.getCodigo());
+        result.put("disponibilidade",    (unidade == null)? "":unidade.getDisponibilidade());
+        result.put("estado_conservacao", (unidade == null)? "":unidade.getEstadoConservacao());
+        result.put("codigo_material",    (unidade == null)? "":unidade.getCodigoMaterial());
+        
+        
+        return result;
     }
     
     public void alocarNaListaDevida(Unidade unidade){
