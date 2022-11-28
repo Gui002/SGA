@@ -32,11 +32,12 @@ public class AluguelDAO implements CRUD<Aluguel>{
         String codigoEmpregado = aluguel.getCodigoEmpregado();
         int codigoUnidade = aluguel.getCodigoUnidade();
         Date data_inicio = aluguel.getData_aluguel();
+        String estado_conservacao = aluguel.getEstado_conservacao().toString();
         int linhasAfetadas = 0;
         
         String query = "INSERT INTO Aluguel"
-                + " (codigo_cliente, codigo_unidade, codigo_empregado, data_inicio)"
-                + " VALUES (?, ?, ?, ?)";
+                + " (codigo_cliente, codigo_unidade, codigo_empregado, data_inicio, estado_conservacao)"
+                + " VALUES (?, ?, ?, ?, ?)";
         
         try{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
@@ -46,6 +47,7 @@ public class AluguelDAO implements CRUD<Aluguel>{
            preparedStatement.setInt(2, codigoUnidade);
            preparedStatement.setString(3, codigoEmpregado);
            preparedStatement.setDate(4, data_inicio);
+           preparedStatement.setString(5, estado_conservacao);
            
            linhasAfetadas = preparedStatement.executeUpdate();
            
@@ -119,8 +121,10 @@ public class AluguelDAO implements CRUD<Aluguel>{
                String codigoEmpregado = result.getString("codigo_empregado");
                Date data_aluguel = result.getDate("data_inicio");
                Date data_devolucao = result.getDate("data_devolucao");
+               EstadoDeConservacao estado_conservacao = result.getString("estado_conservacao")
+                       .equalsIgnoreCase(EstadoDeConservacao.CONSERVADO.toString())? EstadoDeConservacao.CONSERVADO: EstadoDeConservacao.DANIFICADO;
                
-               Aluguel aluguel = new Aluguel(codigoCliente, codigoUnidade, codigoEmpregado, data_aluguel, data_devolucao);
+               Aluguel aluguel = new Aluguel(codigoUnidade, codigoCliente, codigoEmpregado, data_aluguel, data_devolucao, estado_conservacao);
             
                alugueis.add(aluguel);
                
