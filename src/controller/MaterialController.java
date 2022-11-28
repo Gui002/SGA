@@ -18,8 +18,8 @@ import utilitarios.*;
  */
 public class MaterialController {
     private MaterialDAO materialDAO;
-    private List<Material> materiais;
-    private long count = 0;
+    private static List<Material> materiais;
+    private static long count = 0;
     
     
     public MaterialController(){
@@ -27,7 +27,7 @@ public class MaterialController {
         materiais = getMateriais();
     }
     
-    private void atualizar(){
+    private void atualizarLista(){
         if(count > 0){
             materiais = getMateriais();
             count = 0;
@@ -50,7 +50,7 @@ public class MaterialController {
     }
     
     public Map<String, String> getMaterial(int codigo, int codigoCategoria){
-        atualizar();
+        atualizarLista();
         Map<String, String> result = new HashMap();
         
         Material material = Coleccoes.achar(materiais, (Material m) -> {

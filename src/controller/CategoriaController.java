@@ -24,10 +24,11 @@ public class CategoriaController {
     
     public CategoriaController(){
         categoriaDAO = new CategoriaDAO();
-        categorias = getCategorias();
+        count = 1;
+        atualizarLista();
     }
     
-    private void atualizar(){
+    private void atualizarLista(){
         if(count > 0){
             categorias = getCategorias();
             count ++;
@@ -50,7 +51,7 @@ public class CategoriaController {
     }
     
     public Map<String, String> getCategoria(int codigo){
-        atualizar();
+        atualizarLista();
         Map<String, String> result = new HashMap();
         
         Categoria categoria = Coleccoes.achar(categorias, (Categoria c)->{
