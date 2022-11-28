@@ -51,7 +51,7 @@ public class UnidadeController {
         }
     }
     
-    public boolean atualizar(Unidade unidade){
+    protected boolean atualizar(Unidade unidade){
         count++;
         return unidadeDAO.atualizar(unidade);
     }
@@ -67,15 +67,15 @@ public class UnidadeController {
         return unidadeDAO.remover(new Unidade(codigo, 0, Disponibilidade.DISPONIVEL, EstadoDeConservacao.CONSERVADO));
     }
     
-    public List<Unidade> getUnidades(){
+    protected List<Unidade> getUnidades(){
         return unidades;
     }
     
-    public List<Unidade> getUnidadesDisponiveis(){
+    protected List<Unidade> getUnidadesDisponiveis(){
         return unidadesDisponiveis;
     }
     
-    public List<Unidade> getUnidadesIndiponiveis(){
+    protected List<Unidade> getUnidadesIndiponiveis(){
         return unidadesIndisponiveis;
     }
     
