@@ -36,8 +36,8 @@ public class AluguelDAO implements CRUD<Aluguel>{
         int linhasAfetadas = 0;
         
         String query = "INSERT INTO Aluguel"
-                + " (codigo_cliente, codigo_unidade, codigo_empregado, data_inicio, estado_conservacao)"
-                + " VALUES (?, ?, ?, ?, ?)";
+                + " (codigo_cliente, codigo_unidade, codigo_empregado, data_inicio)"
+                + " VALUES (?, ?, ?, ?)";
         
         try{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
@@ -47,7 +47,6 @@ public class AluguelDAO implements CRUD<Aluguel>{
            preparedStatement.setInt(2, codigoUnidade);
            preparedStatement.setString(3, codigoEmpregado);
            preparedStatement.setDate(4, data_inicio);
-           preparedStatement.setString(5, estado_conservacao);
            
            linhasAfetadas = preparedStatement.executeUpdate();
            
