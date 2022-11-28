@@ -29,7 +29,7 @@ public class EmpregadoController {
     private EmpregadoController(){
         empregadoDAO = new EmpregadoDAO();
         count = 1;
-        atualizar();
+        atualizarLista();
     }
     
     public static EmpregadoController getInstance(){
@@ -37,7 +37,7 @@ public class EmpregadoController {
         return instance;
     }
     
-    private void atualizar(){
+    private void atualizarLista(){
         if(count > 0){
             empregados = empregadoDAO.selecionar();
             count = 0;
@@ -56,7 +56,7 @@ public class EmpregadoController {
     }
     
     public List<String> getCodigos(){
-        atualizar();
+        atualizarLista();
         List<String> codigos = new ArrayList();
         empregados.forEach((empregado) -> {
             codigos.add(empregado.getCodigo());
