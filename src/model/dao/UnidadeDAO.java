@@ -54,6 +54,33 @@ public class UnidadeDAO implements CRUD<Unidade>{
         return linhasAfetadas > 0;
     }
     
+    public boolean atualizar(Unidade unidade){
+        int codigo = unidade.getCodigo();
+        int codigo_material = unidade.getCodigoMaterial();
+        String disponibilidade = unidade.getDisponibilidade().toString();
+        String estado = unidade.getEstadoConservacao().toString();
+        
+        String query = "UPDATE Unidade SET Codigo_material = ?, Disponibilidade = ?, Estado_Conservacao = ? "
+                + "WHERE codigo = ?";
+        
+        int linhasAfetadas = 0;
+        try{
+            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
+            PreparedStatement preparedStatement  = conexao.prepareStatement(query);
+            preparedStatement.setInt(1, codigo_material);
+            preparedStatement.setString(2, disponibilidade);
+            preparedStatement.setString(3, estado);
+            preparedStatement.setInt(4, codigo);
+          
+            linhasAfetadas = preparedStatement.executeUpdate();
+            
+            conexao.close();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return linhasAfetadas > 0;
+    }
     
     @Override
     public boolean remover(Unidade unidade) {
