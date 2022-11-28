@@ -20,11 +20,17 @@ public class MaterialController {
     private MaterialDAO materialDAO;
     private static List<Material> materiais;
     private static long count = 0;
+    private static MaterialController instance;
     
     
-    public MaterialController(){
+    private MaterialController(){
         materialDAO = new MaterialDAO();
         materiais = getMateriais();
+    }
+    
+    public static MaterialController getInstance(){
+        if(instance == null){instance = new MaterialController();}
+        return instance;
     }
     
     private void atualizarLista(){

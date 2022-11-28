@@ -21,11 +21,17 @@ public class CategoriaController {
     private CategoriaDAO categoriaDAO;
     private long count = 0;
     private List<Categoria> categorias;
+    private static CategoriaController instance;
     
-    public CategoriaController(){
+    private CategoriaController(){
         categoriaDAO = new CategoriaDAO();
         count = 1;
         atualizarLista();
+    }
+    
+    public static CategoriaController getInstance(){
+        if(instance == null){instance = new CategoriaController();}
+        return instance;
     }
     
     private void atualizarLista(){

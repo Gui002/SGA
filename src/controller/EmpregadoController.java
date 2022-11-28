@@ -23,11 +23,18 @@ public class EmpregadoController {
     private EmpregadoDAO empregadoDAO;
     private static List<Empregado> empregados;
     private static long count = 0;
+    private static EmpregadoController instance;
     
-    public EmpregadoController(){
+    
+    private EmpregadoController(){
         empregadoDAO = new EmpregadoDAO();
         count = 1;
         atualizar();
+    }
+    
+    public static EmpregadoController getInstance(){
+        if(instance == null){instance = new EmpregadoController();}
+        return instance;
     }
     
     private void atualizar(){

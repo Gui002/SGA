@@ -26,11 +26,17 @@ public class AluguelController {
     private static List<Aluguel> alugueis;
     private static List<Map<String, String>> codigos;
     private static long count = 0;
+    private static AluguelController instance;
     
-    public AluguelController(){
+    private AluguelController(){
         aluguelDAO = new AluguelDAO();
         count = 1;
         atualizarLista();
+    }
+    
+    public static AluguelController getInstance(){
+        if(instance == null){instance = new AluguelController();}
+        return instance;
     }
     
     private void atualizarLista(){
@@ -82,7 +88,7 @@ public class AluguelController {
     }
     
     private boolean _novoAluguel(int codigoMaterial, String codigoEmpregado, String codigoCliente){
-        UnidadeController unidadeController = new UnidadeController();
+        UnidadeController unidadeController = UnidadeController.getInstance();
         
         
         Unidade unidade = Coleccoes.achar(unidadeController.getUnidadesDisponiveis(), (Unidade u) -> {
@@ -104,7 +110,7 @@ public class AluguelController {
     }
     
     public boolean novoAluguel(int CodigoMaterial, String codigoEmpregado, String nomeCliente, String telefoneCliente, String endereco){
-       ClienteController clienteController = new ClienteController();
+       ClienteController clienteController =  ClienteController.getInstance();
        String codigoCliente = nomeCliente +"_" +telefoneCliente;
        if(!clienteController.existe(codigoCliente)){
            clienteController.inserir(codigoCliente, nomeCliente, telefoneCliente, endereco);

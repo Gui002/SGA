@@ -21,11 +21,17 @@ public class ClienteController {
     private ClienteDAO clienteDAO;
     private static List<Cliente> clientes;
     private static long count = 0;
+    private static ClienteController instance;
     
-    public ClienteController(){
+    private ClienteController(){
         clienteDAO = new ClienteDAO();
         count = 1;
         atualizarLista();
+    }
+    
+    public static ClienteController getInstance(){
+        if(instance == null){instance = new ClienteController();}
+        return instance;
     }
     
     public void atualizarLista(){

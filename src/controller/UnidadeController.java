@@ -24,12 +24,18 @@ public class UnidadeController {
     private static List<Unidade> unidadesDisponiveis;
     private List<Unidade> unidadesIndisponiveis;
     private static long count = 0;
+    private static UnidadeController instance;
     
     
-    public UnidadeController(){
+    private UnidadeController(){
         unidadeDAO = new UnidadeDAO();
         count = 1;
         atualizarLista();
+    }
+    
+    public static UnidadeController getInstance(){
+        if(instance == null){instance = new UnidadeController();}
+        return instance;
     }
     
     public void atualizarLista(){
