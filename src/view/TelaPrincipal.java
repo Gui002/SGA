@@ -28,7 +28,6 @@ public class TelaPrincipal implements ActionListener, MouseListener {
     private JButton[] btnCategorias;
     private JComboBox cbxCategoria;
     private JButton btnInventario, btnAddProd, btnAluguer, btnHome, btnClientes, btnusuario, btnlogout;
-    private MaterialController m;
         
     //Telas
     private TelaAdicionar add = new TelaAdicionar();
@@ -39,7 +38,6 @@ public class TelaPrincipal implements ActionListener, MouseListener {
 
     public TelaPrincipal() {
         tela = new JFrame();
-        m = MaterialController.getInstance();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setLayout(null);
         tela.setSize(1366, 767);
@@ -265,7 +263,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
             this.setPainelActivo(pc.getPn_processo());
        }
         if(ae.getSource() ==  btnCategorias[0]){
-            m.Material(2);
+            pc.Material(2);
         }
 
     }

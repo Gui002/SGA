@@ -58,18 +58,7 @@ public class MaterialController {
         atualizarLista();
         return materialDAO.selecionar();
     }
-    
-    //Sugestao aqui 
-    public void Material(int codigo){
-        Map<String, Object> material = this.getMaterial(codigo);
-        String nome = (String) material.get("nome");
-        String marc = (String) material.get("marca");
-        int code = (int) material.get("codigo");
-       // nomeEquip.setText("Nome: "+nome);
-        identificacao.setText(""+code);
-        marca_prod.setText(marc);
-    }
-    
+ 
     public Map<String, Object> getMaterial(int codigo){
         atualizarLista();
         Map<String, Object> result = new HashMap();

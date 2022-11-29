@@ -1,20 +1,25 @@
 package view;
 
+import controller.MaterialController;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 import javax.swing.*;
 import utilitario.*;
 
-public class TelaProcesso implements ActionListener{
+public class TelaProcesso implements ActionListener {
 
     JPanel pn_produto, pn_usuario, pn_processo;
     public static JLabel fotoEquipamento, fotoCliente, perfilClient, nomeEquip, categoria, identificacao, marca_prod, taxa_diaria;
-    JTextField nomeCliente,contacto, endereco;
+    JTextField nomeCliente, contacto, endereco;
+    private MaterialController m;
 
     JButton btncancelar, btnalugar;
+
     public TelaProcesso() {
+        m = MaterialController.getInstance();
         pn_processo = new JPanel();
         pn_produto = new JPanel();
         pn_usuario = new JPanel();
@@ -29,9 +34,13 @@ public class TelaProcesso implements ActionListener{
         fotoEquipamento = new JLabel("Foto do equipamento");
         fotoCliente = new JLabel("Perfil padrao");
         nomeEquip = new JLabel("Categoria:");
-        JLabel label_ID = new JLabel("ID   :");
-        identificacao = new JLabel("ID: 8902348439040");
+
+        JLabel label_ID = new JLabel(" ID   :");
+        identificacao = new JLabel();
+
+        JLabel label_marca = new JLabel(" Marca   :");
         marca_prod = new JLabel("Marca: A melhor");
+
         taxa_diaria = new JLabel("Taxa: 250MZN");
         categoria = new JLabel("Categoria: Furadeira");
 
@@ -56,21 +65,21 @@ public class TelaProcesso implements ActionListener{
         fotoEquipamento.setSize(new Dimension(120, 120));
         fotoCliente.setPreferredSize(new Dimension(120, 120));
         Sizer.resizeRelativeTo(marca_prod, pn_produto, 0.8f, 0.1f);
-        
+        Sizer.resizeRelativeTo(label_marca, pn_produto, 0.12f, 0.1f);
+
         Sizer.resizeRelativeTo(nomeEquip, pn_produto, 0.8f, 0.1f);
-        
+
         Sizer.resizeRelativeTo(label_ID, pn_produto, 0.12f, 0.1f);
         Sizer.resizeRelativeTo(identificacao, pn_produto, 0.8f, 0.1f);
-        
+
         Sizer.resizeRelativeTo(taxa_diaria, pn_produto, 0.8f, 0.1f);
-        
+
         Sizer.resizeRelativeTo(categoria, pn_produto, 0.8f, 0.1f);
         Sizer.resizeRelativeTo(nomeCliente, pn_usuario, .9f, .07f);
         Sizer.resizeRelativeTo(contacto, pn_usuario, .9f, .07f);
         Sizer.resizeRelativeTo(endereco, pn_usuario, .9f, .07f);
         Sizer.resizeRelativeTo(btncancelar, pn_usuario, .3f, .07f);
         Sizer.resizeRelativeTo(btnalugar, pn_usuario, .3f, .07f);
-       
 
         //Bordas
         nomeCliente.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Nome")));
@@ -83,6 +92,7 @@ public class TelaProcesso implements ActionListener{
         ComponentPlacer.colocarEm(pn_usuario, btnalugar, ComponentPlacer.LEFT, ComponentPlacer.BOTTOM);
         //No painelProduto
         ComponentPlacer.colocarEm(pn_produto, fotoEquipamento, ComponentPlacer.LEFT, ComponentPlacer.TOP);
+
         ComponentPlacer.abaixo(pn_produto, fotoEquipamento, label_ID, 0);
         ComponentPlacer.direita(pn_produto, label_ID, identificacao, 0);
         ComponentPlacer.abaixo(pn_produto, identificacao, nomeEquip, 0);
@@ -95,19 +105,19 @@ public class TelaProcesso implements ActionListener{
         ComponentPlacer.offset(nomeCliente, 0, 150);
         ComponentPlacer.abaixo(pn_usuario, nomeCliente, contacto);
         ComponentPlacer.offset(contacto, 0, 15);
-        
-        ComponentPlacer.abaixo(pn_usuario, contacto, endereco );
+
+        ComponentPlacer.abaixo(pn_usuario, contacto, endereco);
         ComponentPlacer.offset(endereco, 0, 15);
-        
+
         //Eventos 
         btnalugar.addActionListener(this);
-        
+
 //        marca.setLocation(Sizer.offsets(1, pn_produto.getWidth(), marca.getWidth(), 0), marca.getY());
 //        int paddingH = Sizer.offsets(1, pn_produto.getWidth(), marca.getWidth(), 0);
 //        int paddingV = Sizer.offsets(1, pn_produto.getHeight(), marca.getHeight(), 0);
 //         marca.setLocation(paddingH, paddingV);
     }
-    
+
     public JLabel getNomeEquip() {
         return nomeEquip;
     }
@@ -115,7 +125,6 @@ public class TelaProcesso implements ActionListener{
     public void setNomeEquip(JLabel nomeEquip) {
         this.nomeEquip = nomeEquip;
     }
-    
 
     public JPanel getPn_processo() {
         return pn_processo;
@@ -123,10 +132,19 @@ public class TelaProcesso implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource() == btnalugar){
+        if (ae.getSource() == btnalugar) {
             System.out.println("Lests Do it");
         }
     }
 
- 
+    public void Material(int codigo) {
+        Map<String, Object> material = m.getMaterial(codigo);
+        String nome = (String) material.get("nome");
+        String marc = (String) material.get("marca");
+        int code = (int) material.get("codigo");
+        // nomeEquip.setText("Nome: "+nome);
+        identificacao.setText("" + code);
+        marca_prod.setText(marc);
+    }
+
 }
