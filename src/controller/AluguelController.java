@@ -24,7 +24,7 @@ import utilitarios.Coleccoes;
 public class AluguelController {
     private AluguelDAO aluguelDAO;
     private static List<Aluguel> alugueis;
-    private static List<Map<String, String>> codigos;
+    private static List<Map<String, Object>> codigos;
     private static long count = 0;
     private static AluguelController instance;
     
@@ -42,6 +42,15 @@ public class AluguelController {
     private void atualizarLista(){
         if(count > 0){
             alugueis = aluguelDAO.selecionar();
+            
+            alugueis.forEach((aluguel) -> {
+               Map<String, Object> map = new HashMap();
+               map.put("codigo_empregado", aluguel.getCodigoEmpregado());
+               map.put("codigo_cliente", aluguel.getCodigoCliente());
+               map.put("codigo_unidade", aluguel.getCodigoUnidade());
+               codigos.add(map);
+            });
+            
         }
     }
     
