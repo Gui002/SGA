@@ -26,11 +26,11 @@ public class TelaPrincipal implements ActionListener, MouseListener {
     private JPanel pnCima, pnEsquerdo, pnPrincipal, pnAdaptador, painelActivo;
     private JPanel pnCategorias;
     private JTextField tfPesquisar;
-    private JLabel lbImagemPesquisar, lbMain, lbSelecionarCategoria, nome_usuario;
+    public static JLabel lbImagemPesquisar, lbMain, lbSelecionarCategoria, nome_usuario;
     private JButton[] btnCategorias;
     private JComboBox cbxCategoria;
     private JButton btnInventario, btnAddProd, btnAluguer, btnHome, btnClientes, btnlogout, btnrelatorio;
-
+    public static int codigoEmpregado;
     //Telas
     private TelaAdicionar add = new TelaAdicionar();
     private TelaAluguer alg = new TelaAluguer();
@@ -41,6 +41,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
 
     public TelaPrincipal() {
         tela = new JFrame();
+        codigoEmpregado = -1;
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setLayout(null);
         tela.setSize(1366, 767);
@@ -386,4 +387,9 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         }
 
     }
+
+    public static int getCodigoEmpregado() {
+        return codigoEmpregado;
+    }
+    
 }
