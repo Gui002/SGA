@@ -6,8 +6,8 @@
 package controller;
 
 import controller.Enumeracoes.EstadoDeConservacao;
-import java.time.Instant;
 import java.sql.Date;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +72,7 @@ public class AluguelController {
                 codigoUnidade, 
                 codigoCliente, 
                 codigoEmpregado, 
-                (Date) java.util.Date.from(Instant.now()), 
+                new Date(System.currentTimeMillis()), 
                 null, 
                 null
         );
@@ -103,7 +103,7 @@ public class AluguelController {
     
     public boolean novoAluguel(int CodigoMaterial, String codigoEmpregado, String nomeCliente, String telefoneCliente, String endereco){
        ClienteController clienteController =  ClienteController.getInstance();
-       String codigoCliente = nomeCliente +"_" +telefoneCliente;
+       String codigoCliente = nomeCliente.length() +"_" +telefoneCliente;
        if(!clienteController.existe(codigoCliente)){
            clienteController.inserir(codigoCliente, nomeCliente, telefoneCliente, endereco);
        }
