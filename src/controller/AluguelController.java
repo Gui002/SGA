@@ -8,6 +8,7 @@ package controller;
 import controller.Enumeracoes.EstadoDeConservacao;
 import java.sql.Date;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class AluguelController {
     private void atualizarLista(){
         if(count > 0){
             alugueis = aluguelDAO.selecionar();
-            
+            codigos = new ArrayList();
             alugueis.forEach((aluguel) -> {
                Map<String, Object> map = new HashMap();
                map.put("codigo_empregado", aluguel.getCodigoEmpregado());
