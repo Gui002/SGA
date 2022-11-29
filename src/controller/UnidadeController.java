@@ -68,18 +68,22 @@ public class UnidadeController {
     }
     
     protected List<Unidade> getUnidades(){
+        atualizarLista();
         return unidades;
     }
     
     protected List<Unidade> getUnidadesDisponiveis(){
+        atualizarLista();
         return unidadesDisponiveis;
     }
     
     protected List<Unidade> getUnidadesIndiponiveis(){
+        atualizarLista();
         return unidadesIndisponiveis;
     }
     
     public Map<String, Object> getUnidade(int codigo){
+        atualizarLista();
         Map<String, Object> result = new HashMap();
         
         Unidade unidade = Coleccoes.achar(unidades, (Unidade u) -> {
@@ -93,6 +97,15 @@ public class UnidadeController {
         
         
         return result;
+    }
+    
+    protected Unidade pGetUnidade(int codigo){
+        atualizarLista();
+        Unidade unidade = Coleccoes.achar(unidades, (Unidade u) -> {
+            return u.getCodigo() == codigo;
+        });
+        
+        return unidade;
     }
     
     public void alocarNaListaDevida(Unidade unidade){
