@@ -174,14 +174,23 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         cbxCategoria = new JComboBox(ctgs);
 
         //Adicionando as labels de categorias
+
         for (int i = 0; i < btnCategorias.length; i++) {
-            btnCategorias[i] = new JButton(new ImageIcon("src/imagens/Empilhadeira.jpg"));
+            btnCategorias[i] = new JButton();
             // btnCategorias[i] = new JButton("categoria" + i);
             Sizer.resizeRelativeTo(btnCategorias[i], pnCategorias, .2f, .4f);
             btnCategorias[i].addActionListener(this);
             btnCategorias[i].setBackground(Color.CYAN);
             btnCategorias[i].setBorder(BorderFactory.createLineBorder(Color.BLACK));
         }
+        //Imagens iniciais para btns
+        btnCategorias[0].setIcon(new ImageIcon("src/imagens/Andaimes/andaime.jpg"));
+        btnCategorias[1].setIcon(new ImageIcon("src/imagens/Acesso e elevacao/Empilhadeira.jpg"));
+        btnCategorias[2].setIcon(new ImageIcon("src/imagens/Compactacao/compactador_solo.jpg"));
+        btnCategorias[3].setIcon(new ImageIcon("src/imagens/Concretagem/betoneira_150.jpg"));
+        btnCategorias[4].setIcon(new ImageIcon("src/imagens/Furacao e Demolicao/furadeira_impacto.jpg"));
+        btnCategorias[5].setIcon(new ImageIcon("src/imagens/Gerador bomba compressor/compressor_conservatorio.jpg"));
+
         //Calculando padding
         int offsetH = 100;
         int X = pnCategorias.getWidth();
