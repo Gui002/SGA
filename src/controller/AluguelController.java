@@ -42,15 +42,6 @@ public class AluguelController {
     private void atualizarLista(){
         if(count > 0){
             alugueis = aluguelDAO.selecionar();
-            
-            alugueis.forEach((aluguel) -> {
-                Map <String, String> map = new HashMap();
-                map.put("codigoEmpregado", aluguel.getCodigoEmpregado());
-                map.put("codigoCliente", aluguel.getCodigoCliente());
-                map.put("codigoUnidade", aluguel.getCodigoUnidade() + "");
-                codigos.add(map);
-            });
-            
         }
     }
     
