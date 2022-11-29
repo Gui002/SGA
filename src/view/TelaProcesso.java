@@ -1,5 +1,6 @@
 package view;
 
+import controller.AluguelController;
 import controller.MaterialController;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,8 +18,7 @@ public class TelaProcesso implements ActionListener {
     private MaterialController m;
     public JLabel foto_Equipamento;
     JButton btncancelar, btnalugar;
-    ImageIcon i = new ImageIcon("src/imagens/Empilhadeira.jpg");
-
+    
     public TelaProcesso() {
         m = MaterialController.getInstance();
         pn_processo = new JPanel();
@@ -139,13 +139,7 @@ public class TelaProcesso implements ActionListener {
         return pn_processo;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == btnalugar) {
-            System.out.println("Lests Do it");
-        }
-    }
-
+   
     public void Material(int codigo, ImageIcon j) {
         foto_Equipamento.setIcon(j);
         Map<String, Object> material = m.getMaterial(codigo);
@@ -161,5 +155,18 @@ public class TelaProcesso implements ActionListener {
         categoria.setText("" + cat_code);
 
     }
+    
+     @Override
+    public void actionPerformed(ActionEvent ae) {
+        AluguelController criarAluguer = AluguelController.getInstance();
+        String codigoEmpregado = TelaPrincipal.getCodigoEmpregado();
+        String telefoneCliente = Integer.toString(contacto.getX());
+         System.out.println(codigoEmpregado);
+        if (ae.getSource() == btnalugar) {
+          //  criarAluguer.novoAluguel(0, codigoEmpregado, nomeCliente.getText(), telefoneCliente, endereco.getText());
+            System.out.println("Lests Do it");
+        }
+    }
+
 
 }

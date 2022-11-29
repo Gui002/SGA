@@ -98,9 +98,8 @@ public class TelaLogin extends JFrame implements ActionListener {
                 if ((Nome.equals(empregado.get("nome"))) && (Senha.equals(empregado.get("senha")))) {
                     this.dispose();
                     p = new TelaPrincipal();
-                    nome_usuario.setText("                       "+Nome.toUpperCase());
-                    codigoEmpregado = (int) empregado.get("codigo");
-                    
+                    nome_usuario.setText("                       " + Nome.toUpperCase());
+                    codigoEmpregado = (String) empregado.get("codigo");
                 } else {
                     JOptionPane.showMessageDialog(this, "Acesso negado \nSenha ou Nome invalidos", "Alert", JOptionPane.ERROR_MESSAGE);
                 }
