@@ -17,8 +17,8 @@ public class TelaProcesso implements ActionListener {
     private MaterialController m;
     public JLabel foto_Equipamento;
     JButton btncancelar, btnalugar;
- ImageIcon i = new ImageIcon("src/imagens/Empilhadeira.jpg");
-       
+    ImageIcon i = new ImageIcon("src/imagens/Empilhadeira.jpg");
+
     public TelaProcesso() {
         m = MaterialController.getInstance();
         pn_processo = new JPanel();
@@ -76,7 +76,7 @@ public class TelaProcesso implements ActionListener {
         Sizer.resizeRelativeTo(label_ID, pn_produto, 0.12f, 0.1f);
         Sizer.resizeRelativeTo(identificacao, pn_produto, 0.8f, 0.1f);
         Sizer.resizeRelativeTo(label_taxa, pn_produto, 0.12f, 0.1f);
-        Sizer.resizeRelativeTo(taxa_diaria, pn_produto, 0.8f, 0.1f);        
+        Sizer.resizeRelativeTo(taxa_diaria, pn_produto, 0.8f, 0.1f);
         Sizer.resizeRelativeTo(label_categoria, pn_produto, 0.12f, 0.1f);
         Sizer.resizeRelativeTo(categoria, pn_produto, 0.8f, 0.1f);
         Sizer.resizeRelativeTo(nomeCliente, pn_usuario, .9f, .07f);
@@ -155,11 +155,11 @@ public class TelaProcesso implements ActionListener {
         int cat_code = (int) material.get("codigo_categoria");
         int code = (int) material.get("codigo");
         nomeEquip.setText(nome);
-        identificacao.setText(""+code);        
+        identificacao.setText("" + code);
         marca_prod.setText(marc);
-        taxa_diaria.setText(""+tax);
-        categoria.setText(""+cat_code);
-        
+        taxa_diaria.setText("" + tax);
+        categoria.setText("" + cat_code);
+
     }
 
 }

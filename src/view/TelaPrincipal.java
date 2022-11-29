@@ -5,6 +5,8 @@
  */
 package view;
 
+import controller.EmpregadoController;
+import controller.Enumeracoes;
 import controller.MaterialController;
 import utilitario.Sizer;
 import utilitario.ComponentPlacer;
@@ -34,6 +36,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
     private TelaAluguer alg = new TelaAluguer();
     private TelaCliente clt = new TelaCliente();
     private TelaProcesso pc = new TelaProcesso();
+    private EmpregadoController emp = EmpregadoController.getInstance();
     JFrame tela;
 
     public TelaPrincipal() {
@@ -49,7 +52,8 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         btnHome = new JButton("HOME");
         btnlogout = new JButton("LOGOUT");
         btnrelatorio = new JButton("GERAR RELATORIO");
-        nome_usuario = new  JLabel("GUILHERME");
+        String nome = "Guilherme";
+        nome_usuario = new  JLabel("                       "+nome);
         Font fonte = new Font("Arial", 10, 15);
         JLabel btn_HomeIcon = new JLabel(new ImageIcon("src/imagens/home_amarelo.png"));
         JLabel btn_RelatorioIcon = new JLabel(new ImageIcon("src/imagens/relatorio.png"));
@@ -83,7 +87,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         btnInventario.setFocusable(false);
         btnlogout.setFocusable(false);
         btnrelatorio.setFocusable(false);
-
+        
         pnPrincipal.setLayout(null);
         //Bordas btn
         btnHome.setBorder(BorderFactory.createEmptyBorder());
