@@ -15,7 +15,7 @@ public class Cliente {
      private String nome;
      private String telefone;
 
-    public Cliente(String codigo, String endereco, String nome, String telefone) {
+    public Cliente(String codigo, String nome, String telefone, String endereco) {
         this.codigo = codigo;
         this.endereco = endereco;
         this.nome = nome;
