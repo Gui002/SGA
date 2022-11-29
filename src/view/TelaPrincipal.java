@@ -28,7 +28,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
     private JButton[] btnCategorias;
     private JComboBox cbxCategoria;
     private JButton btnInventario, btnAddProd, btnAluguer, btnHome, btnClientes, btnusuario, btnlogout;
-        
+
     //Telas
     private TelaAdicionar add = new TelaAdicionar();
     private TelaAluguer alg = new TelaAluguer();
@@ -152,7 +152,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         //Adicionando as labels de categorias
         for (int i = 0; i < btnCategorias.length; i++) {
             btnCategorias[i] = new JButton(new ImageIcon("src/imagens/Empilhadeira.jpg"));
-           // btnCategorias[i] = new JButton("categoria" + i);
+            // btnCategorias[i] = new JButton("categoria" + i);
             Sizer.resizeRelativeTo(btnCategorias[i], pnCategorias, .2f, .4f);
             btnCategorias[i].addActionListener(this);
             btnCategorias[i].setBackground(Color.CYAN);
@@ -260,12 +260,9 @@ public class TelaPrincipal implements ActionListener, MouseListener {
             activo.setVisible(false);
             pc.getPn_processo().setVisible(true);
             ComponentPlacer.abaixo(pnAdaptador, pnCima, pc.getPn_processo());
+            pc.Material(2, (ImageIcon) btnCategorias[0].getIcon());
             this.setPainelActivo(pc.getPn_processo());
-       }
-        if(ae.getSource() ==  btnCategorias[0]){
-            pc.Material(2);
         }
-
     }
 
     @Override
