@@ -7,6 +7,7 @@ package controller;
 
 import controller.Enumeracoes.Disponibilidade;
 import controller.Enumeracoes.EstadoDeConservacao;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class UnidadeController {
     UnidadeDAO unidadeDAO;
     private static List<Unidade> unidades;
     private static List<Unidade> unidadesDisponiveis;
-    private List<Unidade> unidadesIndisponiveis;
+    private static List<Unidade> unidadesIndisponiveis;
     private static long count = 0;
     private static UnidadeController instance;
     
@@ -41,6 +42,8 @@ public class UnidadeController {
     public void atualizarLista(){
         if(count > 0){
             unidades = unidadeDAO.selecionar();
+            unidadesDisponiveis = new ArrayList();
+            unidadesIndisponiveis = new ArrayList();
             unidades.forEach((unidade) -> {
                 if(unidade.getDisponibilidade().toString().equalsIgnoreCase(Disponibilidade.DISPONIVEL.toString())){
                     unidadesDisponiveis.add(unidade);
