@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import static view.TelaAdicionar.*;
+import static view.TelaProcesso.*;
 import model.dao.MaterialDAO;
 import model.vo.Material;
 import utilitarios.*;
@@ -55,6 +56,17 @@ public class MaterialController {
     
     private List<Material> getMateriais(){
         return materialDAO.selecionar();
+    }
+    
+    //Sugestao aqui 
+    public void Material(int codigo){
+        Map<String, Object> material = this.getMaterial(codigo);
+        String nome = (String) material.get("nome");
+        String marc = (String) material.get("marca");
+        int code = (int) material.get("codigo");
+       // nomeEquip.setText("Nome: "+nome);
+        identificacao.setText(""+code);
+        marca_prod.setText(marc);
     }
     
     public Map<String, Object> getMaterial(int codigo){

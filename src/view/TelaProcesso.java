@@ -10,7 +10,7 @@ import utilitario.*;
 public class TelaProcesso implements ActionListener{
 
     JPanel pn_produto, pn_usuario, pn_processo;
-    JLabel fotoEquipamento, fotoCliente, perfilClient, nomeEquip, categoria, identificacao, marca, taxa_diaria;
+    public static JLabel fotoEquipamento, fotoCliente, perfilClient, nomeEquip, categoria, identificacao, marca_prod, taxa_diaria;
     JTextField nomeCliente,contacto, endereco;
 
     JButton btncancelar, btnalugar;
@@ -28,9 +28,10 @@ public class TelaProcesso implements ActionListener{
         btncancelar = new JButton("Cancelar");
         fotoEquipamento = new JLabel("Foto do equipamento");
         fotoCliente = new JLabel("Perfil padrao");
-        nomeEquip = new JLabel("Nome:  Britadeira");
+        nomeEquip = new JLabel("Categoria:");
+        JLabel label_ID = new JLabel("ID   :");
         identificacao = new JLabel("ID: 8902348439040");
-        marca = new JLabel("Marca: A melhor");
+        marca_prod = new JLabel("Marca: A melhor");
         taxa_diaria = new JLabel("Taxa: 250MZN");
         categoria = new JLabel("Categoria: Furadeira");
 
@@ -42,7 +43,7 @@ public class TelaProcesso implements ActionListener{
         pn_processo.setBackground(Color.yellow);
         nomeEquip.setBorder(BorderFactory.createLineBorder(Color.yellow));
         identificacao.setBorder(BorderFactory.createLineBorder(Color.yellow));
-        marca.setBorder(BorderFactory.createLineBorder(Color.yellow));
+        marca_prod.setBorder(BorderFactory.createLineBorder(Color.yellow));
         taxa_diaria.setBorder(BorderFactory.createLineBorder(Color.yellow));
         categoria.setBorder(BorderFactory.createLineBorder(Color.yellow));
         fotoEquipamento.setBorder(BorderFactory.createLineBorder(Color.green));
@@ -54,10 +55,15 @@ public class TelaProcesso implements ActionListener{
         Sizer.resizeRelativeTo(pn_usuario, pn_processo, .5f, 1f);
         fotoEquipamento.setSize(new Dimension(120, 120));
         fotoCliente.setPreferredSize(new Dimension(120, 120));
-        Sizer.resizeRelativeTo(marca, pn_produto, 0.8f, 0.1f);
+        Sizer.resizeRelativeTo(marca_prod, pn_produto, 0.8f, 0.1f);
+        
         Sizer.resizeRelativeTo(nomeEquip, pn_produto, 0.8f, 0.1f);
+        
+        Sizer.resizeRelativeTo(label_ID, pn_produto, 0.12f, 0.1f);
         Sizer.resizeRelativeTo(identificacao, pn_produto, 0.8f, 0.1f);
+        
         Sizer.resizeRelativeTo(taxa_diaria, pn_produto, 0.8f, 0.1f);
+        
         Sizer.resizeRelativeTo(categoria, pn_produto, 0.8f, 0.1f);
         Sizer.resizeRelativeTo(nomeCliente, pn_usuario, .9f, .07f);
         Sizer.resizeRelativeTo(contacto, pn_usuario, .9f, .07f);
@@ -77,10 +83,11 @@ public class TelaProcesso implements ActionListener{
         ComponentPlacer.colocarEm(pn_usuario, btnalugar, ComponentPlacer.LEFT, ComponentPlacer.BOTTOM);
         //No painelProduto
         ComponentPlacer.colocarEm(pn_produto, fotoEquipamento, ComponentPlacer.LEFT, ComponentPlacer.TOP);
-        ComponentPlacer.abaixo(pn_produto, fotoEquipamento, identificacao, 0);
+        ComponentPlacer.abaixo(pn_produto, fotoEquipamento, label_ID, 0);
+        ComponentPlacer.direita(pn_produto, label_ID, identificacao, 0);
         ComponentPlacer.abaixo(pn_produto, identificacao, nomeEquip, 0);
-        ComponentPlacer.abaixo(pn_produto, nomeEquip, marca, 0);
-        ComponentPlacer.abaixo(pn_produto, marca, taxa_diaria, 0);
+        ComponentPlacer.abaixo(pn_produto, nomeEquip, marca_prod, 0);
+        ComponentPlacer.abaixo(pn_produto, marca_prod, taxa_diaria, 0);
         ComponentPlacer.abaixo(pn_produto, taxa_diaria, categoria, 0);
 
         //No painelCliente
