@@ -82,4 +82,22 @@ public class EmpregadoController {
         
         return result;
     }
+    
+    public Map<String, Object> getEmpregado(String nome, String senha){
+        atualizarLista();
+        Map<String, Object> result = new HashMap();
+        Empregado empregado = Coleccoes.achar(empregados, (Empregado e) -> {
+            return e.getNome().equals(nome) && e.getSenha().equals(senha);
+        });
+        
+        result.put("codigo",   (empregado == null) ? "": empregado.getCodigo());
+        result.put("nome",     (empregado == null) ? "": empregado.getNome());
+        result.put("sexo",     (empregado == null) ? "": empregado.getSexo());
+        result.put("senha",    (empregado == null) ? "": empregado.getSenha());
+        result.put("telefone", (empregado == null) ? "": empregado.getTelefone());
+        result.put("endereco", (empregado == null) ? "": empregado.getEndereco());
+        result.put("tipo",     (empregado == null) ? "": empregado.getTipo());
+        
+        return result;
+    }
 }
