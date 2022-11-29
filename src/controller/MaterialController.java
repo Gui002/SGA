@@ -7,8 +7,6 @@ package controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import static view.TelaAdicionar.*;
-import static view.TelaProcesso.*;
 import model.dao.MaterialDAO;
 import model.vo.Material;
 import utilitarios.*;
