@@ -82,8 +82,9 @@ public class AluguelDAO implements CRUD<Aluguel>{
     }
     
     
-    public boolean atualizarAluguel(int codigoAluguel, Date data_devolucao, EstadoDeConservacao estadoDeConservacao){
-        String query = "UPDATE Aluguel set data_devolucao = ?, estado_conservacao = ? WHERE codigo = ?";
+    public boolean atualizarAluguel(Aluguel aluguel, Date data_devolucao, EstadoDeConservacao estadoDeConservacao){
+        String query = "UPDATE Aluguel set data_devolucao = ?, estado_conservacao = ? "
+                + "WHERE codigo_cliente = ? AND codigo_empregado = ? AND codigo_unidade = ?";
         int linhasAfetadas = 0;
         try{
            Connection conexao = new Conexao(HOST, NOME_BANCO_DE_DADOS, USUARIO, "").getConexao();
@@ -91,7 +92,9 @@ public class AluguelDAO implements CRUD<Aluguel>{
            
            preparedStatement.setDate(1, data_devolucao);
            preparedStatement.setString(2, estadoDeConservacao.toString());
-           preparedStatement.setInt(3, codigoAluguel);
+           preparedStatement.setString(3, aluguel.getCodigoCliente());
+           preparedStatement.setString(4, aluguel.getCodigoEmpregado());
+           preparedStatement.setInt(5, aluguel.getCodigoUnidade());
            
            linhasAfetadas = preparedStatement.executeUpdate();
            
