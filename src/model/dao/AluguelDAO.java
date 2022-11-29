@@ -51,7 +51,7 @@ public class AluguelDAO implements CRUD<Aluguel>{
            
            conexao.close();
         }catch(SQLException se){
-            System.out.println(se.getMessage());
+            System.out.println("Erro ao tentar inserir unidade");
         }
         
         return linhasAfetadas > 0;
@@ -128,10 +128,8 @@ public class AluguelDAO implements CRUD<Aluguel>{
                Aluguel aluguel = new Aluguel(codigoUnidade, codigoCliente, codigoEmpregado, data_aluguel, data_devolucao, estado_conservacao);
             
                alugueis.add(aluguel);
-               
-               conexao.close();
            }
-           
+    
            conexao.close();
         }catch(SQLException se){
             System.out.println("Erro ao tentar selecionar alugueis");
