@@ -2,10 +2,12 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import utilitario.*;
 
-public class TelaProcesso  {
+public class TelaProcesso implements ActionListener{
 
     JPanel pn_produto, pn_usuario, pn_processo;
     JLabel fotoEquipamento, fotoCliente, perfilClient, nomeEquip, categoria, identificacao, marca, taxa_diaria;
@@ -90,6 +92,9 @@ public class TelaProcesso  {
         ComponentPlacer.abaixo(pn_usuario, contacto, endereco );
         ComponentPlacer.offset(endereco, 0, 15);
         
+        //Eventos 
+        btnalugar.addActionListener(this);
+        
 //        marca.setLocation(Sizer.offsets(1, pn_produto.getWidth(), marca.getWidth(), 0), marca.getY());
 //        int paddingH = Sizer.offsets(1, pn_produto.getWidth(), marca.getWidth(), 0);
 //        int paddingV = Sizer.offsets(1, pn_produto.getHeight(), marca.getHeight(), 0);
@@ -107,6 +112,13 @@ public class TelaProcesso  {
 
     public JPanel getPn_processo() {
         return pn_processo;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource() == btnalugar){
+            System.out.println("Lests Do it");
+        }
     }
 
  

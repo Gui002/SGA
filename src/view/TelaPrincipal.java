@@ -26,7 +26,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
     private JLabel lbImagemPesquisar, lbMain, lbSelecionarCategoria;
     private JButton[] btnCategorias;
     private JComboBox cbxCategoria;
-    private JButton btnInventario, btnAddProd, btnAluguer, btnHome, btnClientes;
+    private JButton btnInventario, btnAddProd, btnAluguer, btnHome, btnClientes, btnusuario, btnlogout;
     //Telas
     private TelaAdicionar add = new TelaAdicionar();
     private TelaAluguer alg = new TelaAluguer();
@@ -45,6 +45,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         btnAluguer = new JButton("ALUGUER");
         btnClientes = new JButton("CLIENTES");
         btnHome = new JButton("HOME");
+        btnusuario = new JButton("USUARIO");
         Font fonte = new Font("Arial", 10, 15);
         JLabel btn_HomeIcon = new JLabel(new ImageIcon("src/imagens/home_amarelo.png"));
         JLabel btn_AddIcon = new JLabel(new ImageIcon("src/imagens/add.png"));
@@ -185,6 +186,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         Sizer.resizeRelativeTo(btnAddProd, pnEsquerdo, 1f, .09f);
         Sizer.resizeRelativeTo(btnAluguer, pnEsquerdo, 1f, .09f);
         Sizer.resizeRelativeTo(btnHome, pnEsquerdo, 1f, .09f);
+        Sizer.resizeRelativeTo(btnusuario, pnEsquerdo, 1f, .09f);
         Sizer.resizeRelativeTo(btnClientes, pnEsquerdo, 1f, .09f);
 
         //Adiciondo componentes em paineis
@@ -197,6 +199,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         ComponentPlacer.abaixo(pnEsquerdo, btnAddProd, btnAluguer);
         ComponentPlacer.acima(pnEsquerdo, btnInventario, btnClientes);
         ComponentPlacer.acima(pnEsquerdo, btnClientes, btnHome);
+        ComponentPlacer.colocarEm(pnEsquerdo, btnusuario, ComponentPlacer.LEFT, ComponentPlacer.BOTTOM);
         //Eventos
         btnInventario.addActionListener(this);
         btnAddProd.addActionListener(this);
