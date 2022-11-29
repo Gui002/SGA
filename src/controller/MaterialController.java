@@ -52,6 +52,7 @@ public class MaterialController {
     }
     
     private List<Material> getMateriais(){
+        atualizarLista();
         return materialDAO.selecionar();
     }
     

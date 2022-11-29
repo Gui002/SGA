@@ -53,6 +53,7 @@ public class CategoriaController {
     }
     
     public List<Categoria> getCategorias(){
+        atualizarLista();
         return categoriaDAO.selecionar();
     }
     

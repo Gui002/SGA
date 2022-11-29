@@ -66,6 +66,7 @@ public class EmpregadoController {
     }
     
     public Map<String, Object> getEmpregado(String codigo){
+        atualizarLista();
         Map<String, Object> result = new HashMap();
         Empregado empregado = Coleccoes.achar(empregados, (Empregado e) -> {
             return e.getCodigo().equalsIgnoreCase(codigo);

@@ -52,10 +52,12 @@ public class ClienteController {
     }
     
     public boolean existe(String codigo){
+        atualizarLista();
         return Coleccoes.achar(clientes, (Cliente c) -> {return c.getCodigo().equalsIgnoreCase(codigo);}) != null;
     }
     
     public Map<String, Object> getCliente(String codigo){
+        atualizarLista();
         Map<String, Object> result = new HashMap();
         
         Cliente cliente = Coleccoes.achar(clientes, (Cliente c) -> {
