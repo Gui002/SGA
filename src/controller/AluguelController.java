@@ -55,6 +55,7 @@ public class AluguelController {
     }
     
     public Map<String, Object> getAluguel(String codigoCliente, String codigoEmpregado, int codigoUnidade){
+        atualizarLista();
         Map<String, Object> result = new HashMap();
         
         Aluguel aluguel = Coleccoes.achar(alugueis, (Aluguel a) -> {
@@ -118,8 +119,39 @@ public class AluguelController {
        return _novoAluguel(CodigoMaterial, codigoEmpregado, codigoCliente);
     }
     
-    public boolean adicionarDevolucao(int codigoAluguel, Date data_devolucao, EstadoDeConservacao estadoDeConservacao){
-        return aluguelDAO.atualizarAluguel(codigoAluguel, data_devolucao, estadoDeConservacao);
+    private boolean adicionarDevolucao(Aluguel aluguel, Date data_devolucao, EstadoDeConservacao estadoDeConservacao){
+        return aluguelDAO.atualizarAluguel(aluguel , data_devolucao, estadoDeConservacao);
+    }
+    
+    public boolean registrarDevolucao(String codigoCliente, String codigoEmpregado, int CodigoUnidade, Date dataDevolucao, EstadoDeConservacao estadoConservacao){
+        //Manutencao do Aluguel
+        atualizarLista();
+        Aluguel aluguel = Coleccoes.achar(alugueis, (Aluguel a) -> {
+            return a.getCodigoCliente().equalsIgnoreCase(codigoCliente) 
+                    && a.getCodigoEmpregado().equalsIgnoreCase(codigoEmpregado)
+                    && a.getCodigoUnidade() == CodigoUnidade;
+        });
+        
+        if(aluguel != null){
+            aluguel.setData_aluguel(dataDevolucao);
+            aluguel.setEstado_conservacao(estadoConservacao);
+            
+            if(adicionarDevolucao(aluguel, dataDevolucao, estadoConservacao)){
+                //Manutencao dos dados da unidade a ser retornada
+                UnidadeController unidadeController = UnidadeController.getInstance();
+                Unidade unidade = unidadeController.pGetUnidade(CodigoUnidade);
+                unidade.setDisponibilidade(Enumeracoes.Disponibilidade.DISPONIVEL);
+                unidadeController.alocarNaListaDevida(unidade);
+                unidade.setEstadoConservacao(estadoConservacao);
+               
+                //Manutencao do cliente (pendente)
+
+                //Manutencao dos dados do empregado (nenhuma)
+                return true;
+            }    
+        }
+        
+        return false;
     }
     
     public boolean removerAluguel(String codigoCliente, String codigoEmpregado, int codigoUnidade){
