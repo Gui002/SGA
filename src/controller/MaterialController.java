@@ -55,12 +55,12 @@ public class MaterialController {
         return materialDAO.selecionar();
     }
     
-    public Map<String, Object> getMaterial(int codigo, int codigoCategoria){
+    public Map<String, Object> getMaterial(int codigo){
         atualizarLista();
         Map<String, Object> result = new HashMap();
         
         Material material = Coleccoes.achar(materiais, (Material m) -> {
-            return m.getCodigo() == codigo && m.getCodigoCategoria() == codigoCategoria;
+            return m.getCodigo() == codigo;
         });
         
         result.put("codigo", (material==null) ? "":material.getCodigo());
