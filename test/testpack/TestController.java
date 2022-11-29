@@ -25,7 +25,7 @@ public class TestController {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame f = new JFrame();
+        JFrame f = new JFrame("BD Manager");
         
         Thread thread = new Thread(() -> {
             JPanel p;

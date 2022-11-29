@@ -21,13 +21,20 @@ public class CategoriaController {
     private CategoriaDAO categoriaDAO;
     private long count = 0;
     private List<Categoria> categorias;
+    private static CategoriaController instance;
     
-    public CategoriaController(){
+    private CategoriaController(){
         categoriaDAO = new CategoriaDAO();
-        categorias = getCategorias();
+        count = 1;
+        atualizarLista();
     }
     
-    private void atualizar(){
+    public static CategoriaController getInstance(){
+        if(instance == null){instance = new CategoriaController();}
+        return instance;
+    }
+    
+    private void atualizarLista(){
         if(count > 0){
             categorias = getCategorias();
             count ++;
@@ -49,17 +56,27 @@ public class CategoriaController {
         return categoriaDAO.selecionar();
     }
     
-    public Map<String, String> getCategoria(int codigo){
-        atualizar();
-        Map<String, String> result = new HashMap();
+    public Map<String, Object> getCategoria(int codigo){
+        atualizarLista();
+        Map<String, Object> result = new HashMap();
         
         Categoria categoria = Coleccoes.achar(categorias, (Categoria c)->{
             return c.getCodigo() == codigo;
         });
         
-        result.put("codigo", (categoria == null)? "": categoria.getCodigo() + "");
+        result.put("codigo", (categoria == null)? "": categoria.getCodigo());
         result.put("nome", (categoria == null)? "": categoria.getNome());
         
         return result;
+    }
+    
+    public List<Integer> getCodigos(){
+        List<Integer> codigos = new ArrayList();
+        
+        categorias.forEach((c) -> {
+            codigos.add(c.getCodigo());
+        });
+        codigos.sort((a, b) -> {return  a - b;});
+        return codigos;
     }
 }

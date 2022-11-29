@@ -32,6 +32,7 @@ public class AluguelDAO implements CRUD<Aluguel>{
         String codigoEmpregado = aluguel.getCodigoEmpregado();
         int codigoUnidade = aluguel.getCodigoUnidade();
         Date data_inicio = aluguel.getData_aluguel();
+        String estado_conservacao = aluguel.getEstado_conservacao().toString();
         int linhasAfetadas = 0;
         
         String query = "INSERT INTO Aluguel"
@@ -119,8 +120,10 @@ public class AluguelDAO implements CRUD<Aluguel>{
                String codigoEmpregado = result.getString("codigo_empregado");
                Date data_aluguel = result.getDate("data_inicio");
                Date data_devolucao = result.getDate("data_devolucao");
+               EstadoDeConservacao estado_conservacao = result.getString("estado_conservacao")
+                       .equalsIgnoreCase(EstadoDeConservacao.CONSERVADO.toString())? EstadoDeConservacao.CONSERVADO: EstadoDeConservacao.DANIFICADO;
                
-               Aluguel aluguel = new Aluguel(codigoCliente, codigoUnidade, codigoEmpregado, data_aluguel, data_devolucao);
+               Aluguel aluguel = new Aluguel(codigoUnidade, codigoCliente, codigoEmpregado, data_aluguel, data_devolucao, estado_conservacao);
             
                alugueis.add(aluguel);
                

@@ -31,14 +31,17 @@ public class TestPanel extends JPanel {
     private JPanel pnControle;
     private JPanel pnOperacao;
     private JPanel pnMain;
-    private String actualEntity = "";
-    private String actualOperation = "";
+    private List<String> nomesAtuais = new ArrayList();
+    private String entidadeAtual = "";
+    
 
     private Map<String, JButton> bEntidades;
     private Map<String, JButton> bControle;
     private Map<String, JButton> bOperacoes;
     private HashMap<String, List<Component>> campos;
     private HashMap<String, JLabel> labels;
+    
+    private final ButtonGroup bgSexo = new ButtonGroup(), bgEstadoConservacao = new ButtonGroup(), bgDisponibilidade = new ButtonGroup();
 
     Color fundo1 = new Color(20, 26, 92);
     Color fundo2 = new Color(99, 95, 112);
@@ -88,6 +91,10 @@ public class TestPanel extends JPanel {
         preencherPainelControle();
         bEntidadeActionListeners();
 
+    }
+    
+    public String getEntidadeAtual(){
+        return entidadeAtual;
     }
 
     public void inserirCampos(Container container, Component refComponent, List<Component> campos, int offsetX) {
@@ -202,15 +209,14 @@ public class TestPanel extends JPanel {
         String disponibilidadeComp[] =  {Disponibilidade.DISPONIVEL.toString(), Disponibilidade.INDISPONIVEL.toString()};
         String conservacaoComp[] =  {EstadoDeConservacao.CONSERVADO.toString(), EstadoDeConservacao.DANIFICADO.toString()};
         
-        addRadio("Sexo", Arrays.asList(sexoComp));
-        addRadio("Disponibilidade", Arrays.asList(disponibilidadeComp));
-        addRadio("Estado de Conservacao", Arrays.asList(conservacaoComp));
+        addRadios("Sexo", Arrays.asList(sexoComp), bgSexo);
+        addRadios("Disponibilidade", Arrays.asList(disponibilidadeComp), bgDisponibilidade);
+        addRadios("Estado de Conservacao", Arrays.asList(conservacaoComp), bgEstadoConservacao);
 
     }
 
-    private void addRadio(String nome, List<String> lista) {
+    private void addRadios(String nome, List<String> lista, ButtonGroup bg) {
         List<Component> ls = new ArrayList();
-        ButtonGroup bg = new ButtonGroup();
         JLabel label = labels.get(nome);
         lista.forEach((s) -> {
             JRadioButton rb = new JRadioButton(s);
@@ -324,43 +330,61 @@ public class TestPanel extends JPanel {
 
     public void bEntidadeActionListeners() {
         bEntidades.get("Categoria").addActionListener((e) -> {
+            entidadeAtual = "Categoria";
             pnMain.removeAll();
             String[] s = {"Codigo", "Nome"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
 
         bEntidades.get("Material").addActionListener((e) -> {
+            entidadeAtual = "Material";
             pnMain.removeAll();
             String[] s = {"Codigo", "Nome", "Codigo do Material", "Taxa diaria"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
 
         bEntidades.get("Unidade").addActionListener((e) -> {
+            entidadeAtual = "Unidade";
             pnMain.removeAll();
             String[] s = {"Codigo", "Codigo do Material", "Disponibilidade", "Estado de Conservacao"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
 
         bEntidades.get("Empregado").addActionListener((e) -> {
+            entidadeAtual = "Empregado";
             pnMain.removeAll();
             String[] s = {"Codigo", "Nome", "Telefone", "Endereco", "Sexo", "Senha", "Tipo"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
 
         bEntidades.get("Cliente").addActionListener((e) -> {
+            entidadeAtual = "Cliente";
             pnMain.removeAll();
             String[] s = {"Codigo", "Nome", "Telefone", "Endereco"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });
         
         bEntidades.get("Aluguel").addActionListener((e) -> {
+            entidadeAtual = "Aluguel";
             pnMain.removeAll();
             String[] s = {"Codigo do Cliente", "Codigo do Empregado", "Codigo da Unidade", "Data de Inicio", "Data de Devolucao"};
+            nomesAtuais.removeAll(nomesAtuais);
+            nomesAtuais.addAll(Arrays.asList(s));
             addComponentsAtMain(Arrays.asList(s));
             this.repaint();
         });

@@ -18,16 +18,22 @@ import utilitarios.*;
  */
 public class MaterialController {
     private MaterialDAO materialDAO;
-    private List<Material> materiais;
-    private long count = 0;
+    private static List<Material> materiais;
+    private static long count = 0;
+    private static MaterialController instance;
     
     
-    public MaterialController(){
+    private MaterialController(){
         materialDAO = new MaterialDAO();
         materiais = getMateriais();
     }
     
-    private void atualizar(){
+    public static MaterialController getInstance(){
+        if(instance == null){instance = new MaterialController();}
+        return instance;
+    }
+    
+    private void atualizarLista(){
         if(count > 0){
             materiais = getMateriais();
             count = 0;
@@ -51,19 +57,19 @@ public class MaterialController {
         return materialDAO.selecionar();
     }
     
-    public Map<String, String> getMaterial(int codigo, int codigoCategoria){
-        atualizar();
-        Map<String, String> result = new HashMap();
+    public Map<String, Object> getMaterial(int codigo, int codigoCategoria){
+        atualizarLista();
+        Map<String, Object> result = new HashMap();
         
         Material material = Coleccoes.achar(materiais, (Material m) -> {
             return m.getCodigo() == codigo && m.getCodigoCategoria() == codigoCategoria;
         });
         
-        result.put("codigo", (material==null) ? "":material.getCodigo() + "");
-        result.put("codigo_categoria", (material==null) ? "":material.getCodigoCategoria()+ "");
+        result.put("codigo", (material==null) ? "":material.getCodigo());
+        result.put("codigo_categoria", (material==null) ? "":material.getCodigoCategoria());
         result.put("marca", (material==null) ? "":material.getMarca());
         result.put("nome", (material==null) ? "":material.getNome());
-        result.put("taxa_diaria", (material==null) ? "":material.getTaxaDiaria() + "");
+        result.put("taxa_diaria", (material==null) ? "":material.getTaxaDiaria());
         
         return result;
     } 
