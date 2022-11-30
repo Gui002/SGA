@@ -27,14 +27,14 @@ public class ProjPOO2 {
     public static void main(String[] args)throws DocumentException, IOException{
 
         //new TelaPrincipal(); 
-//        new TelaLogin();
-
-       // new TelaPrincipal(); 
         new TelaLogin();
 
-        
-        
-        System.out.println(AluguelController.getInstance().novoAluguel(2, "1", "Fabricio", "849345345", "Khongolote"));
+        //new TelaPrincipal(); 
+//        new TelaLogin();
+
+//        System.out.println(new Date(System.currentTimeMillis()));
+//        
+//        System.out.println(AluguelController.getInstance().novoAluguel(2, "1", "Fabricio", "849345345", "Khongolote"));
         //System.out.println(AluguelController.getInstance().novoAluguel(2, "1", "Fabricio", "8493453453", "Khongolote"));
         
 //        AluguelController.gerarRelatorioAluguel( //Exemplo rapido

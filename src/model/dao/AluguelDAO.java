@@ -51,7 +51,8 @@ public class AluguelDAO implements CRUD<Aluguel>{
            
            conexao.close();
         }catch(SQLException se){
-            System.out.println("Erro ao tentar inserir Aluguel");
+            System.out.println("Erro ao tentar inserir Aluguel _>"+se.getMessage());
+            
         }
         
         return linhasAfetadas > 0;
