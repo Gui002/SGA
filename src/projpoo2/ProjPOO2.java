@@ -26,6 +26,8 @@ public class ProjPOO2 {
      */
     public static void main(String[] args)throws DocumentException, IOException{
         new TelaPrincipal(); 
+        //new TelaLogin();
+        
         
         
         
