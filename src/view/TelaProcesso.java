@@ -153,6 +153,7 @@ public class TelaProcesso implements ActionListener {
         marca_prod.setText(marc);
         taxa_diaria.setText("" + tax);
         categoria.setText("" + cat_code);
+        
 
     }
     
@@ -160,9 +161,10 @@ public class TelaProcesso implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         AluguelController criarAluguer = AluguelController.getInstance();
         String codigoEmpregado = TelaPrincipal.getCodigoEmpregado();
-        String telefoneCliente = Integer.toString(contacto.getX());
+        String telefoneCliente = contacto.getText();
          System.out.println(codigoEmpregado);
         if (ae.getSource() == btnalugar) {
+                System.out.println(Integer.parseInt(identificacao.getText()));
             criarAluguer.novoAluguel(Integer.parseInt(identificacao.getText()), codigoEmpregado, nomeCliente.getText(), telefoneCliente, endereco.getText());
             System.out.println("Lests Do it");
         }

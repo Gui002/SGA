@@ -25,18 +25,18 @@ public class ProjPOO2 {
      * @param args the command line arguments
      */
     public static void main(String[] args)throws DocumentException, IOException{
-        //new TelaPrincipal(); 
+        new TelaPrincipal(); 
         
-        AluguelController.gerarRelatorioAluguel( //Exemplo rapido
-                "Fabricio Nhantumbo",
-                "18_87323213", 
-                "Empilhadeira",
-                250.0f
-                , Date.valueOf("2022-11-20")
-                , Date.valueOf("2022-11-29"),
-                "recibo.pdf",
-                "plcHolder.png"
-        );
-    }
+//        AluguelController.gerarRelatorioAluguel( //Exemplo rapido
+//                "Fabricio Nhantumbo",
+//                "18_87323213", 
+//                "Empilhadeira",
+//                250.0f
+//                , Date.valueOf("2022-11-20")
+//                , Date.valueOf("2022-11-29"),
+//                "recibo.pdf",
+//                "plcHolder.png"
+//        );
+//    }
     
-}
+}}
