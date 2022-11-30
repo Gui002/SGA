@@ -27,6 +27,8 @@ public class ProjPOO2 {
     public static void main(String[] args)throws DocumentException, IOException{
         new TelaPrincipal(); 
         
+        
+        
 //        AluguelController.gerarRelatorioAluguel( //Exemplo rapido
 //                "Fabricio Nhantumbo",
 //                "18_87323213", 
