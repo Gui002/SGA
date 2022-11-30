@@ -30,11 +30,11 @@ public class ProjPOO2 {
 //        new TelaLogin();
 
        // new TelaPrincipal(); 
-        //new TelaLogin();
+        new TelaLogin();
 
         
         
-        System.out.println(AluguelController.getInstance().novoAluguel(2, "1", "Fabricio", "8493453453", "Khongolote"));
+        //System.out.println(AluguelController.getInstance().novoAluguel(2, "1", "Fabricio", "8493453453", "Khongolote"));
         
 //        AluguelController.gerarRelatorioAluguel( //Exemplo rapido
 //                "Fabricio Nhantumbo",
