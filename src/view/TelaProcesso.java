@@ -168,7 +168,7 @@ public class TelaProcesso implements ActionListener {
         if (ae.getSource() == btnalugar) {
                 System.out.println(Integer.parseInt(identificacao.getText()));
                 int ii = Integer.parseInt(identificacao.getText());
-            criarAluguer.novoAluguel(ii, codigoEmpregado, nomeCliente.getText(), telefoneCliente, endereco.getText());
+          //  criarAluguer.novoAluguel(ii, codigoEmpregado, nomeCliente.getText(), telefoneCliente, endereco.getText());
             System.out.println(criarAluguer.novoAluguel(Integer.parseInt(identificacao.getText()), codigoEmpregado, nomeCliente.getText(), telefoneCliente, endereco.getText()));
             System.out.println("Lests Do it");
         }
