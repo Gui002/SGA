@@ -299,7 +299,42 @@ public class TelaPrincipal implements ActionListener, MouseListener {
             activo.setVisible(false);
             pc.getPn_processo().setVisible(true);
             ComponentPlacer.abaixo(pnAdaptador, pnCima, pc.getPn_processo());
-            pc.Material(2, (ImageIcon) btnCategorias[0].getIcon());
+            pc.Material(4, (ImageIcon) btnCategorias[0].getIcon());
+            this.setPainelActivo(pc.getPn_processo());
+        }
+        if (ae.getSource() == btnCategorias[1]) {
+            activo.setVisible(false);
+            pc.getPn_processo().setVisible(true);
+            ComponentPlacer.abaixo(pnAdaptador, pnCima, pc.getPn_processo());
+            pc.Material(2, (ImageIcon) btnCategorias[1].getIcon());
+            this.setPainelActivo(pc.getPn_processo());
+        }
+        if (ae.getSource() == btnCategorias[2]) {
+            activo.setVisible(false);
+            pc.getPn_processo().setVisible(true);
+            ComponentPlacer.abaixo(pnAdaptador, pnCima, pc.getPn_processo());
+            pc.Material(5, (ImageIcon) btnCategorias[2].getIcon());
+            this.setPainelActivo(pc.getPn_processo());
+        }
+        if (ae.getSource() == btnCategorias[3]) {
+            activo.setVisible(false);
+            pc.getPn_processo().setVisible(true);
+            ComponentPlacer.abaixo(pnAdaptador, pnCima, pc.getPn_processo());
+            pc.Material(6, (ImageIcon) btnCategorias[3].getIcon());
+            this.setPainelActivo(pc.getPn_processo());
+        }
+        if (ae.getSource() == btnCategorias[4]) {
+            activo.setVisible(false);
+            pc.getPn_processo().setVisible(true);
+            ComponentPlacer.abaixo(pnAdaptador, pnCima, pc.getPn_processo());
+            pc.Material(7, (ImageIcon) btnCategorias[4].getIcon());
+            this.setPainelActivo(pc.getPn_processo());
+        }
+        if (ae.getSource() == btnCategorias[5]) {
+            activo.setVisible(false);
+            pc.getPn_processo().setVisible(true);
+            ComponentPlacer.abaixo(pnAdaptador, pnCima, pc.getPn_processo());
+            pc.Material(8, (ImageIcon) btnCategorias[5].getIcon());
             this.setPainelActivo(pc.getPn_processo());
         }
     }
