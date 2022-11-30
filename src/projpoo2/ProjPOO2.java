@@ -25,9 +25,8 @@ public class ProjPOO2 {
      * @param args the command line arguments
      */
     public static void main(String[] args)throws DocumentException, IOException{
-        //new TelaPrincipal(); 
+        new TelaPrincipal(); 
         
-            AluguelController.getInstance().novoAluguel(1, "1", "Fabricio", "87452323", "Khongolote");
 //        AluguelController.gerarRelatorioAluguel( //Exemplo rapido
 //                "Fabricio Nhantumbo",
 //                "18_87323213", 
@@ -38,6 +37,6 @@ public class ProjPOO2 {
 //                "recibo.pdf",
 //                "plcHolder.png"
 //        );
-    }
+//    }
     
-}
+}}
