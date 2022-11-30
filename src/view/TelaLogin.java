@@ -70,8 +70,8 @@ public class TelaLogin extends JFrame implements ActionListener {
         int Y = offsetH + lbNome.getWidth() + tfNome.getWidth();
         int paddingH = Sizer.offsets(1, pnForm.getWidth(), Y);
 
-        ComponentPlacer.superiorEsquerdo(pnForm, tfNome, paddingH, offsetV);
-        //ComponentPlacer.direita(pnForm, lbNome, tfNome, offsetH);
+        ComponentPlacer.superiorEsquerdo(pnForm, lbNome, paddingH, offsetV);
+        ComponentPlacer.direita(pnForm, lbNome, tfNome, offsetH);
         ComponentPlacer.abaixo(pnForm, lbNome, lbPassword, 20);
         ComponentPlacer.direita(pnForm, lbPassword, pfPassword, offsetH);
         ComponentPlacer.colocarEm(pnForm, btnLogin, ComponentPlacer.MIDDLE, ComponentPlacer.BOTTOM);
