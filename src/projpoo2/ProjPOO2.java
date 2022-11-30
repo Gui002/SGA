@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package projpoo2;
+import com.itextpdf.text.DocumentException;
 import controller.AluguelController;
 import controller.Enumeracoes;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.IOException;
 import java.sql.Date;
 import javax.swing.*;
 import view.*;
@@ -22,9 +24,19 @@ public class ProjPOO2 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)throws DocumentException, IOException{
         //new TelaPrincipal(); 
-       System.out.println(AluguelController.getInstance().registrarDevolucao("8_84920121", "1", 1, new Date(System.currentTimeMillis()), Enumeracoes.EstadoDeConservacao.CONSERVADO));
+        
+        AluguelController.gerarRelatorioAluguel( //Exemplo rapido
+                "Fabricio Nhantumbo",
+                "18_87323213", 
+                "Empilhadeira",
+                250.0f
+                , Date.valueOf("2022-11-20")
+                , Date.valueOf("2022-11-29"),
+                "recibo.pdf",
+                "plcHolder.png"
+        );
     }
     
 }
