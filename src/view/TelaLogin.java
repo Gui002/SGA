@@ -58,7 +58,7 @@ public class TelaLogin extends JFrame implements ActionListener {
         Sizer.resizeRelativeTo(lbIcone, pnForm, .2f, .2f);
         Sizer.resizeRelativeTo(lbNome, pnForm, .15f, .05f);
         Sizer.resizeRelativeTo(lbPassword, lbNome, 1, 1);
-        Sizer.resizeRelativeTo(tfNome, pnForm, .50f, .05f);
+        Sizer.resizeRelativeTo(tfNome, pnForm, .9f, .07f);
         Sizer.resizeRelativeTo(pfPassword, tfNome, 1, 1);
         Sizer.resizeRelativeTo(btnLogin, pnForm, .2f, .05f);
 
@@ -70,8 +70,8 @@ public class TelaLogin extends JFrame implements ActionListener {
         int Y = offsetH + lbNome.getWidth() + tfNome.getWidth();
         int paddingH = Sizer.offsets(1, pnForm.getWidth(), Y);
 
-        ComponentPlacer.superiorEsquerdo(pnForm, lbNome, paddingH, offsetV);
-        ComponentPlacer.direita(pnForm, lbNome, tfNome, offsetH);
+        ComponentPlacer.superiorEsquerdo(pnForm, tfNome, paddingH, offsetV);
+        //ComponentPlacer.direita(pnForm, lbNome, tfNome, offsetH);
         ComponentPlacer.abaixo(pnForm, lbNome, lbPassword, 20);
         ComponentPlacer.direita(pnForm, lbPassword, pfPassword, offsetH);
         ComponentPlacer.colocarEm(pnForm, btnLogin, ComponentPlacer.MIDDLE, ComponentPlacer.BOTTOM);
