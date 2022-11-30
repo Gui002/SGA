@@ -44,7 +44,7 @@ public class AluguelDAO implements CRUD<Aluguel>{
            
            preparedStatement.setString(1, codigoCliente);
            preparedStatement.setInt(2, codigoUnidade);
-           preparedStatement.setString(3, codigoEmpregado);
+           preparedStatement.setInt(3, Integer.parseInt(codigoEmpregado));
            preparedStatement.setDate(4, data_inicio);
            
            linhasAfetadas = preparedStatement.executeUpdate();

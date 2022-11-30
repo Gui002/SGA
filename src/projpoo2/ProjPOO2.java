@@ -34,6 +34,7 @@ public class ProjPOO2 {
 
         
         
+        System.out.println(AluguelController.getInstance().novoAluguel(2, "1", "Fabricio", "849345345", "Khongolote"));
         //System.out.println(AluguelController.getInstance().novoAluguel(2, "1", "Fabricio", "8493453453", "Khongolote"));
         
 //        AluguelController.gerarRelatorioAluguel( //Exemplo rapido
