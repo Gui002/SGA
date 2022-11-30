@@ -47,16 +47,16 @@ public class TelaProcesso implements ActionListener {
         categoria = new JLabel();
 
         //Cores 
-        pn_produto.setBackground(Color.pink);
-        pn_usuario.setBackground(Color.CYAN);
+        pn_produto.setBackground(new Color(255, 247, 83, 159));
+        pn_usuario.setBackground(new Color(255, 247, 83, 159));
         fotoEquipamento.setForeground(Color.gray);
         fotoCliente.setForeground(Color.gray);
-        pn_processo.setBackground(Color.yellow);
-        nomeEquip.setBorder(BorderFactory.createLineBorder(Color.yellow));
-        identificacao.setBorder(BorderFactory.createLineBorder(Color.yellow));
-        marca_prod.setBorder(BorderFactory.createLineBorder(Color.yellow));
-        taxa_diaria.setBorder(BorderFactory.createLineBorder(Color.yellow));
-        categoria.setBorder(BorderFactory.createLineBorder(Color.yellow));
+        //pn_processo.setBackground(new Color(62, 62, 62));
+        nomeEquip.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62)));
+        identificacao.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62)));
+        marca_prod.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62)));
+        taxa_diaria.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62)));
+        categoria.setBorder(BorderFactory.createLineBorder(new Color(62, 62, 62)));
         fotoEquipamento.setBorder(BorderFactory.createLineBorder(Color.green));
         fotoCliente.setBorder(BorderFactory.createLineBorder(Color.green));
 
@@ -89,6 +89,8 @@ public class TelaProcesso implements ActionListener {
         nomeCliente.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Nome")));
         contacto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Contacto")));
         endereco.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Local")));
+        pn_produto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Equipamento")));
+        pn_usuario.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("Dados do cliente")));
 
         //Adicionando
         ComponentPlacer.superiorEsquerdo(pn_processo, pn_produto);

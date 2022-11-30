@@ -25,9 +25,9 @@ public class ProjPOO2 {
      * @param args the command line arguments
      */
     public static void main(String[] args)throws DocumentException, IOException{
-        //new TelaPrincipal(); 
-        new TelaLogin();
-        System.out.println("dddd");
+        new TelaPrincipal(); 
+        //new TelaLogin();
+        
         
 //        AluguelController.gerarRelatorioAluguel( //Exemplo rapido
 //                "Fabricio Nhantumbo",

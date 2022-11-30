@@ -41,7 +41,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
 
     public TelaPrincipal() {
         tela = new JFrame();
-        codigoEmpregado = " "+-1;
+        codigoEmpregado = " " + -1;
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setLayout(null);
         tela.setSize(1366, 767);
@@ -54,7 +54,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         btnlogout = new JButton("LOGOUT");
         btnrelatorio = new JButton("GERAR RELATORIO");
         String nome = "Guilherme";
-        nome_usuario = new  JLabel("                       "+nome);
+        nome_usuario = new JLabel("                       " + nome);
         Font fonte = new Font("Arial", 10, 15);
         JLabel btn_HomeIcon = new JLabel(new ImageIcon("src/imagens/home_amarelo.png"));
         JLabel btn_RelatorioIcon = new JLabel(new ImageIcon("src/imagens/relatorio.png"));
@@ -63,7 +63,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         JLabel btn_ClientIcon = new JLabel(new ImageIcon("src/imagens/clientes.png"));
         JLabel btn_AluguerIcon = new JLabel(new ImageIcon("src/imagens/aluguer.png"));
         JLabel btn_InvetIcon = new JLabel(new ImageIcon("src/imagens/inventario.png"));
-        JLabel usuario = new JLabel(new ImageIcon("src/imagens/usuario_2.png"));
+        JLabel usuario = new JLabel(new ImageIcon("src/imagens/login.png"));
         pnCima = new JPanel(null);
         pnEsquerdo = new JPanel(null);
         pnCategorias = new JPanel(null);
@@ -72,8 +72,8 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         painelActivo = pnPrincipal;
 
         //Adicionando Icones
+        //btnAddProd.add(btn_AddIcon);
         btnHome.add(btn_HomeIcon);
-        btnAddProd.add(btn_AddIcon);
         btnAluguer.add(btn_AluguerIcon);
         btnInventario.add(btn_InvetIcon);
         btnClientes.add(btn_ClientIcon);
@@ -82,17 +82,17 @@ public class TelaPrincipal implements ActionListener, MouseListener {
 
         //Extra
         btnHome.setFocusable(false);
-        btnAddProd.setFocusable(false);
         btnAluguer.setFocusable(false);
         btnClientes.setFocusable(false);
         btnInventario.setFocusable(false);
         btnlogout.setFocusable(false);
         btnrelatorio.setFocusable(false);
-        
+        btnAddProd.setVisible(false);
+
         pnPrincipal.setLayout(null);
         //Bordas btn
+        // btnAddProd.setBorder(BorderFactory.createEmptyBorder());
         btnHome.setBorder(BorderFactory.createEmptyBorder());
-        btnAddProd.setBorder(BorderFactory.createEmptyBorder());
         btnAluguer.setBorder(BorderFactory.createEmptyBorder());
         btnClientes.setBorder(BorderFactory.createEmptyBorder());
         btnInventario.setBorder(BorderFactory.createEmptyBorder());
@@ -101,8 +101,8 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         // pnAdaptador.setLayout(null);
 
         //Fontes
+        // btnAddProd.setFont(fonte);
         btnHome.setFont(fonte);
-        btnAddProd.setFont(fonte);
         btnAluguer.setFont(fonte);
         btnClientes.setFont(fonte);
         btnInventario.setFont(fonte);
@@ -111,10 +111,10 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         nome_usuario.setFont(fonte);
 
         //Colorir btns
+        //btnAddProd.setBackground(new Color(62, 62, 62));
+        //btnAddProd.setForeground(Color.WHITE);
         btnHome.setBackground(new Color(62, 62, 62));
         btnHome.setForeground(Color.WHITE);
-        btnAddProd.setBackground(new Color(62, 62, 62));
-        btnAddProd.setForeground(Color.WHITE);
         btnAluguer.setBackground(new Color(62, 62, 62));
         btnAluguer.setForeground(Color.WHITE);
         btnClientes.setBackground(new Color(62, 62, 62));
@@ -174,7 +174,6 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         cbxCategoria = new JComboBox(ctgs);
 
         //Adicionando as labels de categorias
-
         for (int i = 0; i < btnCategorias.length; i++) {
             btnCategorias[i] = new JButton();
             // btnCategorias[i] = new JButton("categoria" + i);
@@ -221,7 +220,6 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         Sizer.resizeRelativeTo(usuario, pnEsquerdo, 1f, .09f);
         Sizer.resizeRelativeTo(nome_usuario, pnEsquerdo, 1f, .09f);
         Sizer.resizeRelativeTo(btnrelatorio, pnEsquerdo, 1f, .09f);
-        Sizer.resizeRelativeTo(btnAddProd, pnEsquerdo, 1f, .09f);
         Sizer.resizeRelativeTo(btnAluguer, pnEsquerdo, 1f, .09f);
         Sizer.resizeRelativeTo(btnHome, pnEsquerdo, 1f, .09f);
         Sizer.resizeRelativeTo(btnlogout, pnEsquerdo, 1f, .09f);
@@ -233,8 +231,9 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         ComponentPlacer.direita(pnPrincipal, lbImagemPesquisar, lbSelecionarCategoria, 20);
         ComponentPlacer.direita(pnPrincipal, lbSelecionarCategoria, cbxCategoria, 1);
         ComponentPlacer.centralizar(pnEsquerdo, btnInventario);
-        ComponentPlacer.abaixo(pnEsquerdo, btnInventario, btnAddProd);
-        ComponentPlacer.abaixo(pnEsquerdo, btnAddProd, btnAluguer);
+        //ComponentPlacer.abaixo(pnEsquerdo, btnInventario, btnAddProd);
+        ComponentPlacer.abaixo(pnEsquerdo, btnInventario, btnAluguer);
+        // ComponentPlacer.abaixo(pnEsquerdo, btnAddProd, btnAluguer);
         ComponentPlacer.acima(pnEsquerdo, btnInventario, btnClientes);
         ComponentPlacer.acima(pnEsquerdo, btnClientes, btnHome);
         ComponentPlacer.abaixo(pnEsquerdo, btnAluguer, btnrelatorio);
@@ -243,21 +242,20 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         ComponentPlacer.abaixo(pnEsquerdo, usuario, nome_usuario, 0);
         //Eventos
         btnInventario.addActionListener(this);
-        btnAddProd.addActionListener(this);
+      //  btnAddProd.addActionListener(this);
         btnAluguer.addActionListener(this);
         btnHome.addActionListener(this);
         btnClientes.addActionListener(this);
         btnlogout.addActionListener(this);
 
         btnHome.addMouseListener(this);
-        btnAddProd.addMouseListener(this);
+       // btnAddProd.addMouseListener(this);
         btnAluguer.addMouseListener(this);
         btnClientes.addMouseListener(this);
         btnInventario.addMouseListener(this);
         btnlogout.addMouseListener(this);
 
-        System.out.println(pnCima.getSize());
-        //tela.setResizable(false);
+       //tela.setResizable(false);
         tela.setVisible(true);
     }
 
@@ -400,5 +398,5 @@ public class TelaPrincipal implements ActionListener, MouseListener {
     public static String getCodigoEmpregado() {
         return codigoEmpregado;
     }
-    
+
 }
