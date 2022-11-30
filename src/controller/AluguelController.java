@@ -5,7 +5,19 @@
  */
 package controller;
 
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import controller.Enumeracoes.EstadoDeConservacao;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -158,5 +170,57 @@ public class AluguelController {
     public boolean removerAluguel(String codigoCliente, String codigoEmpregado, int codigoUnidade){
         Aluguel aluguel = new Aluguel(codigoUnidade, codigoCliente, codigoEmpregado, null, null, EstadoDeConservacao.CONSERVADO);
         return aluguelDAO.remover(aluguel);
+    }
+    
+     public static void gerarRelatorioAluguel(String nomeCliente, String codigoCliente, String nomeMaterial, float taxaDiaria, Date dataAluguel, Date dataDevolucao, String caminhoFicheiro, String caminhoImagem) throws IOException, DocumentException{
+        Document document = new Document(new Rectangle(400, 400));
+        PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(caminhoFicheiro));
+        document.open();
+        Paragraph nomeEmpresa = new Paragraph();
+        nomeEmpresa.add(Image.getInstance(caminhoImagem));
+        nomeEmpresa.add(new Chunk("Ferragens Panguana, LTD - Matola"));
+        
+
+        PdfPTable table = new PdfPTable(2);
+
+        int diasDecoridosMili = (int) (dataDevolucao.getTime() - dataAluguel.getTime());
+        int diasDecorridos =(int) (diasDecoridosMili /86400000);
+        
+        
+        float precoTotal = diasDecorridos * taxaDiaria;
+        float desconto = 0f;
+        
+        table.addCell("Nome do Cliente");
+        table.addCell(nomeCliente);
+        table.addCell("Codigo do cliente");
+        table.addCell(codigoCliente);
+        table.addCell("Material Alugado");
+        table.addCell(nomeMaterial);
+        table.addCell("Data de aluguel");
+        table.addCell(dataAluguel.toString());
+        table.addCell("Data de devolucao");
+        table.addCell(dataDevolucao.toString());
+        table.addCell("Preco diario");
+        table.addCell(taxaDiaria + "");
+        table.addCell("Preco total(MZN)");
+        table.addCell(precoTotal + "");
+        table.addCell("Desconto(MZN)");
+        table.addCell(desconto + "");
+        document.add(new Chunk("RECECIBO"));
+        document.add(Chunk.NEWLINE);
+        document.add(Chunk.NEWLINE);
+        document.add(nomeEmpresa);
+        document.add(new Paragraph(new Date(System.currentTimeMillis()).toString()));
+        document.add(Chunk.NEWLINE);
+        document.add(Chunk.NEWLINE);
+        document.add(table);
+        
+        document.close();
+        
+        Desktop desktop = null;
+        if(Desktop.isDesktopSupported()){
+            desktop = Desktop.getDesktop();
+            desktop.open(new File(caminhoFicheiro));
+        }
     }
 }
