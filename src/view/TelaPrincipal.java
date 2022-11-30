@@ -299,7 +299,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
             activo.setVisible(false);
             pc.getPn_processo().setVisible(true);
             ComponentPlacer.abaixo(pnAdaptador, pnCima, pc.getPn_processo());
-            pc.Material(4, (ImageIcon) btnCategorias[0].getIcon());
+            pc.Material(2, (ImageIcon) btnCategorias[0].getIcon());
             this.setPainelActivo(pc.getPn_processo());
         }
         if (ae.getSource() == btnCategorias[1]) {
