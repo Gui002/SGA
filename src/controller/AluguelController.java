@@ -106,7 +106,7 @@ public class AluguelController {
         
         
         Unidade unidade = Coleccoes.achar(unidadeController.getUnidadesDisponiveis(), (Unidade u) -> {
-            return u.getCodigo() == codigoMaterial;
+            return u.getCodigoMaterial() == codigoMaterial;
         });
         
         if(unidade == null) return false;
