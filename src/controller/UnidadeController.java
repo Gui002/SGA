@@ -89,14 +89,22 @@ public class UnidadeController {
         atualizarLista();
         Map<String, Object> result = new HashMap();
         
+        
         Unidade unidade = Coleccoes.achar(unidades, (Unidade u) -> {
            return u.getCodigo() == codigo;
         });
+        
+        String nomeMaterial = "";
+        if(unidade != null){
+            int codigoMaterial = unidade.getCodigoMaterial();
+            nomeMaterial =(String) MaterialController.getInstance().getMaterial(codigoMaterial).get("nome");
+        }
         
         result.put("codigo",             (unidade == null)? "":unidade.getCodigo());
         result.put("disponibilidade",    (unidade == null)? "":unidade.getDisponibilidade());
         result.put("estado_conservacao", (unidade == null)? "":unidade.getEstadoConservacao());
         result.put("codigo_material",    (unidade == null)? "":unidade.getCodigoMaterial());
+        result.put("nome_material",    nomeMaterial);
         
         
         return result;
