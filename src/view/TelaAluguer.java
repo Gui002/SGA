@@ -17,7 +17,7 @@ import utilitario.*;
 public class TelaAluguer {
 
     private JPanel pnAluguer;
-    private String[] linhas = {"Nome", "Data de aluguer", "Numero de quipamentos", "Valor"};
+    private String[] linhas = {"Nome do cliente", "Data de aluguer", "Nome do material", "Codigo da unidade"};
     private String[][] dados = {};
     private JTable tbInfoAlugueis;
     private JScrollPane spnTabela;
