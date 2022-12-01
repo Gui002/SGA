@@ -172,6 +172,45 @@ public class AluguelController {
         return aluguelDAO.remover(aluguel);
     }
     
+     public static void gerarRelatorioInicial(String nomeCliente, String codigoCliente, String nomeMaterial, float taxaDiaria, Date dataAluguel, String caminhoFicheiro, String caminhoImagem) throws IOException, DocumentException{
+        Document document = new Document(new Rectangle(400, 400));
+        PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(caminhoFicheiro));
+        document.open();
+        Paragraph nomeEmpresa = new Paragraph();
+        nomeEmpresa.add(Image.getInstance(caminhoImagem));
+        nomeEmpresa.add(new Chunk("Ferragens Panguana, LTD - Matola"));
+        
+
+        PdfPTable table = new PdfPTable(2);
+
+        table.addCell("Nome do Cliente");
+        table.addCell(nomeCliente);
+        table.addCell("Codigo do cliente");
+        table.addCell(codigoCliente);
+        table.addCell("Material Alugado");
+        table.addCell(nomeMaterial);
+        table.addCell("Data de aluguel");
+        table.addCell(dataAluguel.toString());
+        table.addCell("Preco diario");
+        table.addCell(taxaDiaria + "");
+        document.add(new Chunk("RECECIBO"));
+        document.add(Chunk.NEWLINE);
+        document.add(Chunk.NEWLINE);
+        document.add(nomeEmpresa);
+        document.add(new Paragraph(new Date(System.currentTimeMillis()).toString()));
+        document.add(Chunk.NEWLINE);
+        document.add(Chunk.NEWLINE);
+        document.add(table);
+        
+        document.close();
+        
+        Desktop desktop = null;
+        if(Desktop.isDesktopSupported()){
+            desktop = Desktop.getDesktop();
+            desktop.open(new File(caminhoFicheiro));
+        }
+    }
+    
      public static void gerarRelatorioAluguel(String nomeCliente, String codigoCliente, String nomeMaterial, float taxaDiaria, Date dataAluguel, Date dataDevolucao, String caminhoFicheiro, String caminhoImagem) throws IOException, DocumentException{
         Document document = new Document(new Rectangle(400, 400));
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(caminhoFicheiro));
