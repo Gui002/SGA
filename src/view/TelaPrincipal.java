@@ -5,6 +5,7 @@
  */
 package view;
 
+import com.itextpdf.text.DocumentException;
 import controller.EmpregadoController;
 import controller.Enumeracoes;
 import controller.MaterialController;
@@ -15,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import javax.swing.*;
 
 /**
@@ -33,14 +35,15 @@ public class TelaPrincipal implements ActionListener, MouseListener {
     public static String codigoEmpregado;
     //Telas
     private TelaAdicionar add = new TelaAdicionar();
-    private TelaAluguer alg = new TelaAluguer();
+    private TelaAluguer alg;
     private TelaCliente clt = new TelaCliente();
     private TelaProcesso pc = new TelaProcesso();
     private EmpregadoController emp = EmpregadoController.getInstance();
     JFrame tela;
 
-    public TelaPrincipal() {
+    public TelaPrincipal() throws IOException, DocumentException {
         tela = new JFrame();
+        alg = new TelaAluguer();
         codigoEmpregado = " " + -1;
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setLayout(null);
@@ -267,6 +270,12 @@ public class TelaPrincipal implements ActionListener, MouseListener {
         this.painelActivo = painelActivo;
     }
 
+    public JPanel getPnPrincipal() {
+        return pnPrincipal;
+    }
+    
+    
+
     //Tratamento de eventos
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -288,6 +297,7 @@ public class TelaPrincipal implements ActionListener, MouseListener {
             pnPrincipal.setVisible(true);
             ComponentPlacer.abaixo(pnAdaptador, pnCima, pnPrincipal);
             this.setPainelActivo(pnPrincipal);
+            
         }
         if (ae.getSource() == btnClientes) {
             activo.setVisible(false);
@@ -299,9 +309,11 @@ public class TelaPrincipal implements ActionListener, MouseListener {
             activo.setVisible(false);
             pc.getPn_processo().setVisible(true);
             ComponentPlacer.abaixo(pnAdaptador, pnCima, pc.getPn_processo());
-            pc.Material(2, (ImageIcon) btnCategorias[0].getIcon());
-            this.setPainelActivo(pc.getPn_processo());
+            pc.Material(4, (ImageIcon) btnCategorias[0].getIcon());
+            this.setPainelActivo(pc.getPn_processo());            
         }
+   
+        
         if (ae.getSource() == btnCategorias[1]) {
             activo.setVisible(false);
             pc.getPn_processo().setVisible(true);
@@ -336,6 +348,22 @@ public class TelaPrincipal implements ActionListener, MouseListener {
             ComponentPlacer.abaixo(pnAdaptador, pnCima, pc.getPn_processo());
             pc.Material(8, (ImageIcon) btnCategorias[5].getIcon());
             this.setPainelActivo(pc.getPn_processo());
+            
+        }
+    }
+    
+    public void cancelar(){
+               int i= 0;                     
+        while(this.getPainelActivo() == pc.getPn_processo()){
+            if(pc.getActivador()){
+                this.setPainelActivo(pnPrincipal);
+            }
+            if(i == 5){
+                break;
+            }
+            System.out.println("Olaaa");
+            i++;
+            continue;
         }
     }
 

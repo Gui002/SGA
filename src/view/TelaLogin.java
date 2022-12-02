@@ -5,12 +5,16 @@
  */
 package view;
 
+import com.itextpdf.text.DocumentException;
 import controller.EmpregadoController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static view.TelaPrincipal.*;
 import utilitario.*;
 
@@ -102,7 +106,13 @@ public class TelaLogin extends JFrame implements ActionListener {
             } else {
                 if ((Nome.equals(empregado.get("nome"))) && (Senha.equals(empregado.get("senha")))) {
                     this.dispose();
-                    p = new TelaPrincipal();
+                    try {
+                        p = new TelaPrincipal();
+                    } catch (IOException ex) {
+                        Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (DocumentException ex) {
+                        Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     nome_usuario.setText("                       " + Nome.toUpperCase());
                     codigoEmpregado = (String) empregado.get("codigo");
                 } else {

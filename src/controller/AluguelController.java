@@ -172,7 +172,7 @@ public class AluguelController {
         return aluguelDAO.remover(aluguel);
     }
     
-     public static void gerarRelatorioInicial(String nomeCliente, String codigoCliente, String nomeMaterial, float taxaDiaria, Date dataAluguel, String caminhoFicheiro, String caminhoImagem) throws IOException, DocumentException{
+     public void gerarRelatorioInicial(String nomeCliente, String codigoCliente, String nomeMaterial, float taxaDiaria, Date dataAluguel, String caminhoFicheiro, String caminhoImagem) throws IOException, DocumentException{
         Document document = new Document(new Rectangle(400, 400));
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(caminhoFicheiro));
         document.open();
@@ -211,7 +211,7 @@ public class AluguelController {
         }
     }
     
-     public static void gerarRelatorioAluguel(String nomeCliente, String codigoCliente, String nomeMaterial, float taxaDiaria, Date dataAluguel, Date dataDevolucao, String caminhoFicheiro, String caminhoImagem) throws IOException, DocumentException{
+     public  void gerarRelatorioAluguel(String nomeCliente, String codigoCliente, String nomeMaterial, float taxaDiaria, Date dataAluguel, Date dataDevolucao, String caminhoFicheiro, String caminhoImagem) throws IOException, DocumentException{
         Document document = new Document(new Rectangle(400, 400));
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(caminhoFicheiro));
         document.open();
@@ -261,5 +261,9 @@ public class AluguelController {
             desktop = Desktop.getDesktop();
             desktop.open(new File(caminhoFicheiro));
         }
+    }
+     public ArrayList<Aluguel> _getAluguel() {
+        ArrayList<Aluguel> aluguer = (ArrayList<Aluguel>) aluguelDAO.selecionar();
+        return aluguer;
     }
 }

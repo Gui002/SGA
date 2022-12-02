@@ -1,16 +1,21 @@
 package view;
 
+import com.itextpdf.text.DocumentException;
 import controller.AluguelController;
 import controller.MaterialController;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.Date;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import utilitario.*;
 
-public class TelaProcesso implements ActionListener {
+public class TelaProcesso extends JFrame implements ActionListener {
 
     JPanel pn_produto, pn_usuario, pn_processo;
     public static JLabel fotoEquipamento, fotoCliente, perfilClient, nomeEquip, categoria, identificacao, marca_prod, taxa_diaria;
@@ -18,9 +23,11 @@ public class TelaProcesso implements ActionListener {
     private MaterialController m;
     public JLabel foto_Equipamento;
     JButton btncancelar, btnalugar;
-    
+    boolean activador;
+
     public TelaProcesso() {
         m = MaterialController.getInstance();
+        activador = false;
         pn_processo = new JPanel();
         pn_produto = new JPanel();
         pn_usuario = new JPanel();
@@ -95,11 +102,11 @@ public class TelaProcesso implements ActionListener {
         //Adicionando
         ComponentPlacer.superiorEsquerdo(pn_processo, pn_produto);
         ComponentPlacer.superiorDireito(pn_processo, pn_usuario);
-        ComponentPlacer.colocarEm(pn_usuario, btnalugar, ComponentPlacer.LEFT, ComponentPlacer.BOTTOM);
-        //No painelProduto
-        //ComponentPlacer.colocarEm(pn_produto, fotoEquipamento, ComponentPlacer.LEFT, ComponentPlacer.TOP);
+        ComponentPlacer.colocarEm(pn_usuario, btnalugar, ComponentPlacer.RIGHT, ComponentPlacer.BOTTOM);
+        ComponentPlacer.offset(btnalugar, -5, -10);
+        ComponentPlacer.esquerda(pn_usuario, btnalugar, btncancelar, HEIGHT);
         ComponentPlacer.colocarEm(pn_produto, foto_Equipamento, ComponentPlacer.MIDDLE, ComponentPlacer.TOP);
-
+        ComponentPlacer.offset(foto_Equipamento, 100, 0);
         ComponentPlacer.abaixo(pn_produto, fotoEquipamento, label_ID, 0);
         ComponentPlacer.abaixo(pn_produto, label_ID, label_Nome, 0);
         ComponentPlacer.abaixo(pn_produto, label_Nome, label_Marca, 0);
@@ -122,11 +129,7 @@ public class TelaProcesso implements ActionListener {
 
         //Eventos 
         btnalugar.addActionListener(this);
-
-//        marca.setLocation(Sizer.offsets(1, pn_produto.getWidth(), marca.getWidth(), 0), marca.getY());
-//        int paddingH = Sizer.offsets(1, pn_produto.getWidth(), marca.getWidth(), 0);
-//        int paddingV = Sizer.offsets(1, pn_produto.getHeight(), marca.getHeight(), 0);
-//         marca.setLocation(paddingH, paddingV);
+        btncancelar.addActionListener(this);
     }
 
     public JLabel getNomeEquip() {
@@ -141,7 +144,12 @@ public class TelaProcesso implements ActionListener {
         return pn_processo;
     }
 
-   
+    public boolean getActivador() {
+        return activador;
+    }
+    
+    
+
     public void Material(int codigo, ImageIcon j) {
         foto_Equipamento.setIcon(j);
         Map<String, Object> material = m.getMaterial(codigo);
@@ -155,29 +163,36 @@ public class TelaProcesso implements ActionListener {
         marca_prod.setText(marc);
         taxa_diaria.setText("" + tax);
         categoria.setText("" + cat_code);
-        
 
     }
-    
-     @Override
+
+    @Override
     public void actionPerformed(ActionEvent ae) {
         AluguelController criarAluguer = AluguelController.getInstance();
         String codigoEmpregado = TelaPrincipal.getCodigoEmpregado();
         String telefoneCliente = contacto.getText();
-         System.out.println(codigoEmpregado);
+        System.out.println(codigoEmpregado);
         if (ae.getSource() == btnalugar) {
-                System.out.println(Integer.parseInt(identificacao.getText()));
-                int ii = Integer.parseInt(identificacao.getText());
-                
-            //criarAluguer.novoAluguel(ii, codigoEmpregado, nomeCliente.getText(), telefoneCliente, endereco.getText());
-            System.out.println(criarAluguer.novoAluguel(Integer.parseInt(identificacao.getText()), "20202408", nomeCliente.getText(), telefoneCliente, endereco.getText()));
+            criarAluguer.novoAluguel(Integer.parseInt(identificacao.getText()), codigoEmpregado, nomeCliente.getText(), telefoneCliente, endereco.getText());
+            if (criarAluguer.novoAluguel(Integer.parseInt(identificacao.getText()), codigoEmpregado, nomeCliente.getText(), telefoneCliente, endereco.getText())) {
+                JOptionPane.showMessageDialog(this, "Aluguel feito com sucesso");
+                try {
+                    criarAluguer.gerarRelatorioInicial(nomeCliente.getText(), nomeCliente.getText().length() + "_" + telefoneCliente, nomeEquip.getText(), Float.parseFloat(taxa_diaria.getText()), new Date(System.currentTimeMillis()), "AluguelInicio.pdf", "src/imagens/ph.jpg");
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaProcesso.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (DocumentException ex) {
+                    Logger.getLogger(TelaProcesso.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-
-          //  criarAluguer.novoAluguel(ii, codigoEmpregado, nomeCliente.getText(), telefoneCliente, endereco.getText());
-            System.out.println(criarAluguer.novoAluguel(Integer.parseInt(identificacao.getText()), codigoEmpregado, nomeCliente.getText(), telefoneCliente, endereco.getText()));
+            } else {
+                JOptionPane.showMessageDialog(this, "Material indisponivel");
+            }
             System.out.println("Lests Do it");
         }
+        
+        if(ae.getSource() == btncancelar){
+            this.activador = true;            
+        }
     }
-
 
 }
