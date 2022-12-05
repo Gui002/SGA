@@ -30,6 +30,7 @@ public class TelaAluguer {
     private JTable tbInfoAlugueis;
     private JScrollPane spnTabela;
     private JLabel lbLogo;
+    JButton btnpagar;
 
     public TelaAluguer() throws IOException, DocumentException {
         this.preencher();
@@ -37,16 +38,19 @@ public class TelaAluguer {
         spnTabela = new JScrollPane(tbInfoAlugueis);
         tbInfoAlugueis.setEnabled(false);
         pnAluguer = new JPanel(null);
-
+        btnpagar = new JButton("Pagar");
         //Fundo
         pnAluguer.setBackground(new Color(255, 247, 83, 159));
 
         //Tamanhos
         pnAluguer.setSize(1081, 656);
         Sizer.resizeRelativeTo(spnTabela, pnAluguer, .98f, .60f);
+        Sizer.resizeRelativeTo(btnpagar, pnAluguer, .2f, .07f);
 
         //Adicionando
         ComponentPlacer.centralizar(pnAluguer, spnTabela);
+        ComponentPlacer.colocarEm(pnAluguer, btnpagar, ComponentPlacer.RIGHT, ComponentPlacer.BOTTOM);
+        ComponentPlacer.offset(btnpagar, -5, -10);
 
     }
 
@@ -63,12 +67,11 @@ public class TelaAluguer {
             dados[i][1] = "" + c.get("endereco");//Esta retornar Telefone
             dados[i][2] = "" + aluguel.get(i).getData_aluguel();
             dados[i][3] = "" + u.get("nome_material");
-            dados[i][4] = ""+aluguel.get(i).getCodigoUnidade();    //Esta a retornar o endereco
+            dados[i][4] = "" + aluguel.get(i).getCodigoUnidade();    //Esta a retornar o endereco
 ////     
         }
-        
-      //  alg.gerarRelatorioInicial(dados[1][0],aluguel.get(1).getCodigoCliente() , dados[1][3], 0, aluguel.get(1).getData_aluguel(), "AluguelInicio.pdf", "src/imagens/ph.jpg");
-        
+
+        //  alg.gerarRelatorioInicial(dados[1][0],aluguel.get(1).getCodigoCliente() , dados[1][3], 0, aluguel.get(1).getData_aluguel(), "AluguelInicio.pdf", "src/imagens/ph.jpg");
     }
 
     public JPanel getPnaluguer() {
