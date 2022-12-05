@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package controller;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,5 +74,8 @@ public class MaterialController {
         
         return result;
     } 
-    
+       public ArrayList<Material> _getMaterial() {
+        ArrayList<Material> client = (ArrayList<Material>) materialDAO.selecionar();
+        return client;
+    }
 }

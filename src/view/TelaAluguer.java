@@ -49,8 +49,8 @@ public class TelaAluguer {
 
         //Adicionando
         ComponentPlacer.centralizar(pnAluguer, spnTabela);
-        ComponentPlacer.colocarEm(pnAluguer, btnpagar, ComponentPlacer.RIGHT, ComponentPlacer.BOTTOM);
-        ComponentPlacer.offset(btnpagar, -5, -10);
+//        ComponentPlacer.colocarEm(pnAluguer, btnpagar, ComponentPlacer.RIGHT, ComponentPlacer.BOTTOM);
+//        ComponentPlacer.offset(btnpagar, -5, -10);
 
     }
 
